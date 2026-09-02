@@ -1,0 +1,321 @@
+
+aide_retour = "zum Hilfe-Hauptmen&uuml"
+
+index_contenu = """
+	<b>HILFE-HAUPTMEN&Uuml</b>
+	<br><br>
+	SOPlanning ist einfach zu benutzen: Man plant Aufgaben durch Zuordnung einer Person zu einem Projekt.
+	<br>
+	Ist dieses Prinzip einmal verinnerlicht, bietet SOPlanning viele Funktionen, um Projekte, Personen, Ressourcen oder Orte zu planen und im Blick zu behalten.
+	<br><br>
+	Nachfolgend sind alle Funtionen von SOPlanning beschrieben.
+	<br>
+	Wenn Sie Fragen haben, kontaktieren Sie gerne den <a target="_blank" href="http://www.soplanning.org">technischen Support</a> oder besuchen Sie das <a href="http://forum.soplanning.org">Forum</a>.
+"""
+
+planning_titre = "Planungsansicht"
+
+planning_contenu = """
+	<h3> Die Anzeigemodi </h3>
+	Unter "ANZEIGE" finden Sie alle verf&uumlgbaren Ansichten in SOPlanning:
+	<br>
+	<ul>
+		<li> <b> nach Benutzer</b>: SOPlanning listet die Personen (Benutzer) in der linken Spalte und zeigt die Aufgaben der Benutzer in der jeweiligen Zeile des Benutzers. </ li>
+		<li> <b> nach Projekt</b>: SOPlanning listet die Projekte in der linken Spalte und zeigt die Aufgaben der Projekte in der jeweiligen Zeile des Projekts. </ li>
+		<li> <b> nach Ort</b>: Wenn das Modul aktiviert ist, listet SOPlanning die Orte in der linken Spalte und zeigt die zugeordneten Aufgaben in den zugeh&oumlrigen Zeilen. </ li>
+		<li> <b> nach Ressource</b>: Wenn das Modul aktiviert ist, listet SOPlanning die Ressourcen in der linken Spalte und zeigt die zugeordneten Aufgaben in den zugeh&oumlrigen Zeilen. </ li>
+		<li> <b> Benutzer-Agenda</b>: In dieser Kalenderdarstellung werden die Aufgaben der Benutzer am gew&aumlhlten Tag angezeigt. Die Benutzernamen werden als Spalten&uumlberschriften verwendet und in der linken Spalte steht die Tageszeit. </ Li>
+		<li> <b> Stundenansicht</b>: Die Spalten der Planung sind Zeitintervalle mit der Dauer von einer Stunde. Erm&oumlglicht die stundengenaue Darstellung von Projekten und Aufgaben. </ Li>
+		<li> <b> Tagesansicht</b>: Die Spalten der Planung sind Tage, das ist die Grundeinstellung von SOPlanning. </ li>
+		<li> <b> Leere Zeilen anzeigen</b>: SOPlanning zeigt in der Grundeinstellung alle Zeilen der Planung (alle Benutzer, alle Projekte). Wird diese Option deaktiviert, werden nur noch Zeilen mit Aufgaben im ausgew&aumlhlten Zeitraum angezeigt. </ Li>
+		<li> <b> Tagessumme anzeigen</b>: Zeigt eine Extrazeile unterhalb des Plans, in welcher die Summen der Spalten angezeigt wwerden. </ li>
+		<li> <b> Tabelle anzeigen</b>: Zeigt eine tabellarische Liste aller Aufgaben, die in der Planung angezeigt werden. Diese textliche Darstellung ist etwas detaillierter. </ Li>
+	</ul>
+	Sobald man in diesem Men&uuml einmal eine Ansicht markiert hat, kann man ohne weitere Einstellungen zwischen den Varianten umschalten.
+
+	<h3> Auswahl der anzuzeigenden Zeitspanne </h3>
+	Der Plan wird vom Start-Datum bis zum End-Datum angezeigt (au&szliger die Benutzer-Agenda, die zeigt nur einen Tag).
+	<br> Man w&aumlhlt die Zeitspanne durch klicken auf den Datums-Button links oben.
+	<br> Es &oumlffnen sich Eingabefelder f&uumlr das Start-Datum und das End-Datum. Man kann auch ein Datum aus den Vorschlagslisten w&aumlhlen (Heute, letzte Woche, etc.). Durch einen Klick auf den Button mit der Lupe werden die Daten sofort &uumlbernommen.
+	<br> Man kann auch die Buttons rechts neben den Datums-Button (die mit "<" und ">") benutzen, um die angezeigte Zeitspanne zu verschieben. Der Sprung h&aumlngt von der eingestellten Zeitspanne ab: Werden zwei Monate angezeigt, wird der Bereich um zwei Monate verschoben usw.
+
+	<h3> Filter </h3>
+	Verschiedene Filter erm&oumlglichen es, die Anzeige so zu gestalten, dass nur die gew&uumlnschten Aufgaben angezeigt werden.
+	<br> Man kann nach <b> Benutzer</b>, <b> Projekt</b>, <b> Aufgaben-Status</b>, <b> Projekt-Status</b>, <b> Ort </b> oder <b> Ressource </b>filtern.
+	<br> F&uumlr jeden Filter gibt es mehrere Auswahlm&oumlglichkeiten. Wenn ein Filter aktiv ist, wird sein Button in rot dargestellt. Es werden nur noch Aufgaben angezeigt, die den Auswahlkriterien entsprechen.
+	<br> Ein Filter kann jederzeit abgeschaltet werden. Klicken Sie auf den Button des aktiven Filters und dann auf den <i> Filter deaktivieren</i> - Button.
+
+	<h3> Andere Anzeigeeinstellungen </h3>
+	Man kann die Planung <b>sortieren</b>: Wenn die ANZEIGE "nach Benutzer" eingestellt ist, nach Namen oder Benutzer-ID, wenn die ANZEIGE "nach Projekt" eingestellt ist, nach Projekt oder Projekt-ID.
+	<br>
+	Es ist auch eine Gruppierung der Benutzer nach Team m&oumlglich oder eine Gruppierung nach Projektgruppe f&uumlr Projekte.
+	<br><br>
+
+	<b> (+) Erweiterte Ansicht / (-) Kompakte Ansicht</b> (Button mit Lupe): In der Grundeinstellung zeigt SOPlanning die Aufgaben in der Kompakt-Ansicht, nur mit der ID des Benutzers oder des Projekts. Die erweiterte Ansicht expandiert die Zellen der Aufgaben und zeigt zus&aumltzliche Informationen: Startzeit, Dauer, Gesamtzeit des zugeordneten Benutzers und die Benutzerauslastung (100 %, wenn die Benutzerzeit die Tagesarbeitszeit des Benutzers erreicht hat. Wenn z. B. ein Benutzer eine Aufgabe mit 5h und eine mit 3h hat, wird 100 % angezeigt, sofern eine Tagesarbeitszeit von 8h in den Einstellungen aktiviert ist.
+	<br><br>
+	&Uumlber den Button mit den zwei Dreiecken sind zus&aumltzliche Navigationshilfen verf&uumlgbar: 
+	<br> Durch <b>Scrollbar auch oben</b> erscheint eine Scrollbar oberhalb der Planungsanzeige. Das ist n&uumltzlich, wenn die Liste der Projekte bzw. Benutzer sehr lang ist.
+	<br> Die Option <b> Navigationspfeile </b> blendet links und rechts des Plans Pfeile ein, mit denen man in der Zeit vor- oder zur&uumlckspringn kann.
+	<br> Die Option <b> Spalten&uumlberschrift fixieren </b> beh&aumllt die ersten Zeilen mit der Zeitangabe immer als &Uumlberschrift in der Anzeige, auch wenn man weiter nach unten scrollt.
+
+
+	<h3> Arbeiten in der Planungsansicht </h3>
+	Die Planung ist einfach und intuitiv. In der Benutzer-Ansicht repr&aumlsentieren die Zellen die Aufgaben und zeigen die Projekt-IDs der entsprechenden Projekte. In der Projekt-Ansicht werden stattdessen die Benutzer-IDs in den Aufgaben-Zellen angezeigt.
+	<br>
+	F&aumlhrt man mit dem Mauszeiger &uumlber eine Aufgaben-Zelle, so werden alle Aufgabeninformationen in einem Popup-Fenster angezeigt. Durch das Anklicken der Zelle &oumlffnet sich ein Fenster, in welchem alle Daten der Aufgabe ge&aumlndert werden k&oumlnnen.
+	<br>
+	Die Aufgaben, Projekte und Benutzer, die angezeigt werden, sind von den Berechtigungen des angemeldeten Benutzers abh&aumlngig, die in der <a href="utilisateurs.php"> Benutzerverwaltung </a> festgelegt werden.
+	<br>
+	Durch einen Klick in einem leeren Tag oder direkt unter eine existierende Aufgabe &oumlffnet sich das Eingabeformular f&uumlr Aufgaben. Projekt, Benutzer und Datum sind vor-ausgew&aumlhlt. Eine Aufgabe kann auch &uumlber den Men&uumleintrag "Aufgabe hinzuf&uumlgen" in "Planung" oder &uumlber den Button "Aufgabe hinzuf&uumlgen" erstellt werden.
+	<br>
+	In der Eingabemaske sind <b>nur wenige Angaben zwingend erforderlich</b>: Das Projekt, der zugeordnete Benutzer, das Startdatum und die Dauer.
+	<br>
+	Alle anderen Felder dienen der weiteren informativen Ausgestaltung Ihrer Projekte.
+	<br>
+	Man kann einer Aufgabe mehrere Personen zuordnen. In diesem Fall wird die Aufgabe mehrfach kopiert und jede Kopie einer anderen Person zugeordnet. Die Aufgabenkopien sind dann<b> unabh&aumlngig</b>.
+	<br><br>
+	Die <b> Dauer einer Aufgabe </b> kann wie folgt bestimmt werden: Durch ein End-Datum (z.B. mehrere auf einander folgende Tage), eine Dauer in Stunden/Minuten, eine Start- und End-Zeit oder die Wahl von "vormittags" oder "nachmittags". Diese 4 Optionen erm&oumlglichen ein flexibles Mikro- oder Makro-Management von Aufgaben und Projekten. Aufgaben mit einer Dauer von mehreren Tagen lassen sich mit solchen von wenigen Stunden kombinieren. SOPlanning wird f&uumlr die beste Darstellung sorgen.
+	<br><br>
+	Die Funktion <b>Wiederholung</b> erm&oumlglicht eine Erstellung von regelm&auml&szligig wiederkehrenden Aufgaben: t&aumlglich, w&oumlchentlich, monatlich. Es gibt verschiedene Optionen: Wiederholung alle x Tage, End-Datum der Wiederholung, Einstellungen f&uumlr den Fall, dass die Wiederholung auf einen arbeitsfreien Tag f&aumlllt (auf den folgenden Tag verschieben, auslassen oder trotzdem setzen).
+	<br><br>
+	<B> Status </b> erm&oumlglicht die Verwendung von Filtern in der Planungsanzeige. Der "erledigt"-Status f&uumlhrt dazu, dass die ID in den Aufgabenzellen durchgestrichen dargestellt wird.
+	<br><br>
+	Die Bedeutung von <b>Meilenstein</b> entspricht derjenigen in einem Gantt-Diagramm: Eine Aufgabe mit dieser Eigenschaft markiert einen wichtigen Zeitpunkt und wird in der Planung mit einem passendem Piktogramm auf der Zelle dargestellt.
+	<br><br>
+	<B> Orte und Ressourcen</b> sind optionale Module, mit denen den Aufgaben noch andere Merkmale zugewiesen werden k&oumlnnen, als Benutzer und Projekte. Das erm&oumlglicht die Zuteilung von R&aumlumen, Ausr&uumlstung, Fahrzeugen etc.
+	<br><br>
+	<B> Per e-Mail benachrichtigen </b> ist standardm&auml&szlig aktiviert. Achtung: Eine e-Mail wird nur gesendet, wenn diese Option angekreuzt ist und der zugewiesene Benutzer in seinem Profil eine g&uumlltige e-Mail-Adresse eingetragen und dem Empfang von Benachrichtigungen zugestimmt hat.
+	<br><br>
+	Mehrere Benutzer k&oumlnnen gleichzeitig eine Aufgabe in der Planung &aumlndern. Es werden die Infos von dem Benutzer gespeichert, der zuletzt auf "speichern" klickt.
+
+
+	<h3>Export-Module</h3>
+	Es sind verschiedene Export-Formate verf&uumlgbar.
+	Wenn Sie keine geeignete Exportvariante finden, kann das SOPlanning Team eine entwickeln. Bitte <a href="https://www.soplanning.org" target="_blank"> kontaktieren Sie uns</a>.
+	<br>
+	Die Planung kann in den folgenden Formaten exportiert werden:
+	<Ul>
+	<li> .CSV (kann mit EXCEL ge&oumlffnet werden) </ li>
+	<li> .XLS (EXCEL-Datei) mit Formatierung, die der Anzeige nahe kommt </ li>
+	<li> .PDF (aktuelle Seite, wie angezeigt) </ li>
+	<li> als Gantt-Diagramm (als Grafik im Browser, f&uumlr Projekt-Management mit Meilensteinen) </ li>
+	<li> ICal (.ics) zur Synchronisation mit Outlook oder Gmail, so dass alle Aufgaben direkt im pers&oumlnlichen Kalender stehen </ li>
+	<li> Kalender: Ein Jahreskalender als .pdf-Datei </ li>
+	</Ul>
+
+	<h3>Die tabellarische Zusammenfassung </h3>
+	Die Anzeige der Tabelle unterhalb der Planungsansicht ist optional. Sie kann im Men&uuml <b>ANZEIGE</b> ausgeschaltet werden. 
+	<br>
+	Die detaillierte Auflistung der Aufgaben beinhaltet auch Angaben zur Gesamtsumme und Auslastung jeder Zeile (Benutzer oder Projekt, je nach Darstellung).
+	<br>
+	Die Aufgaben k&oumlnnen durch Anklicken in dieser Tabelle ge&aumlndert werden.
+"""
+
+ressources_titre = "Ressourcen"
+
+ressources_contenu = """
+	Ressourcen sind zus&aumltzliche Merkmale, die man Aufgaben zuweisen kann.
+	<br>
+	Dieses Modul ist optional und kann in den Einstellungen jederzeit aktiviert oder deaktiviert werden.
+	<br>
+	Wenn das Modul aktiviert ist, erscheint ein Auswahlmen&uuml mit einer Liste der verf&uumlgbaren Ressourcen im Aufgabenformular. Diese Liste kann in <a href="../ressources.php"> Einstellungen/Ressourcen </a> bearbeitet werden.
+	<br><br>
+	Die Eingabe einer Ressource in der Aufgabenverwaltung ist optional. Man braucht einer Aufgabe keine Ressource zuordnen, auch nicht, wenn das Modul aktiviert wurde.
+	<br><br>
+	Man kann f&uumlr jede Ressource festlegen, ob sie <b>exklusiv</b> ist oder nicht. Wenn man einer Aufgabe eine exklusive Ressource zuweist, kann man diese Ressource keiner anderen Aufgabe im gleichen Zeitraum mehr zuweisen. Eine Ressource ohne Exklusivit&aumlt kann beliebig vielen Aufgaben zur gleichen Zeit zugeordnet werden.
+	<br><br>
+	Eine Ressource, die einer Aufgabe zugewiesen ist, kann jederzeit wieder abgew&aumlhlt werden. Man braucht nur die Aufgabe zur Bearbeitung aufrufen und entsprechend &aumlndern.
+"""
+
+users_titre = "Benutzerverwaltung"
+
+users_contenu = """
+	Benutzer sind die Personen, die in der Planung einer Aufgabe zugeordnet werden, aber auch die Personen, welche sich hier einloggen k&oumlnnen.
+	<br>
+	Es k&oumlnnen beliebig viele Benutzer angelegt werden. Jeder Benutzer hat eigene Berechtigungen.
+	<br>
+	Eine Aufgabe ist immer mit einem Projekt und einem Benutzer verbunden. Stellen Sie sicher, dass der gew&uumlnschte Benutzer schon eingerichtet wurde, bevor Sie eine Aufgabe anlegen. 
+
+	<h3> Benutzerprofil </h3>
+	Jeder Benutzer kann sein Profil nach einem Klick auf seinen Namen rechts oben im Men&uuml bearbeiten. Hier k&oumlnnen die e-Mail-Adresse und das Passwort ge&aumlndert werden, sowie die Benachrichtigungsfunktion aktiviert und die Anzeigegrundeinstellung ausgew&aumlhlt werden. Andere Einstellungen k&oumlnnen nur durch Benutzer mit Berechtigung zur &Aumlnderung von Benutzerdaten ge&aumlndert werden.
+
+	<h3> Admin-Benutzerkonto </h3>
+	Der Benutzer "admin", der standardm&auml&szligig existiert, ist nicht zwingend erforderlich. Dieses Benutzerkonto ist nicht das einzige, dass alle Berechtigungen haben kann. Man kann andere Benutzer erstellen und jedem alle gew&uumlnschten Rechte zuweisen. Danach kann der Benutzer "admin" gel&oumlscht werden. So l&aumlsst sich vermeiden, dass es einen einzelnen Benutzer gibt, der alle Berechtigungen hat.
+
+	<h3> Liste der Benutzer </h3>
+	Die Liste der Benutzer zeigt alle registrierten Benutzer. Hier kann man Benutzer einrichten, &aumlndern oder l&oumlschen und grundlegende Informationen der Benutzerkonten einsehen.
+	<br>
+	Die Liste kann durch einen Klick auf die Spalten&uumlberschrift sortiert und nach Teamzugeh&oumlrigkeit oder Suchbegriff gefiltert werden.
+	<br>
+	<b>Achtung</b>: L&oumlscht man einen Benutzer, so werden auch alle Aufgaben des Benutzers gel&oumlscht!
+
+	<h3> Die Hauptmerkmale eines Benutzers </h3>
+	Die ID ist eine Zeichenkette, die f&uumlr jeden Benutzer einmalig ist. Sie wird auf den Zellen der Aufgaben in der Planung angezeigt. Es sollte eine einfache ID gew&aumlhlt werden, welche die betreffende Person identifiziert (z. B. Initialen, Personalnummer etc.). Die ID kann sp&aumlter nicht mehr ge&aumlndert werden.
+	<br>
+	Das Feld "Name" erfordert die einzige weitere Eingabe, um einen Benutzer anlegen zu k&oumlnnen. Dieser Name wird in der Tabelle unterhalb der Planung angezeigt.
+	<br>
+	Das Feld "e-Mail-Adresse" ist optional und wird nur benutzt, wenn die Benachrichtigungsfunktion aktiviert ist (siehe unten).
+	<br>
+	Die Felder "Login" und "Passwort" sind auch optional und brauchen nur verwendet werden, wenn der Benutzer die M&oumlglichkeit zum Login haben soll. Die Zugangsdaten sind f&uumlr jeden Benutzer individuell. Bitte verwenden Sie nur sichere Passw&oumlrter (mindestens 8 Zeichen).
+
+	<H3> Team </h3>
+	Ein Benutzer kann genau einem Team zugeordnet werden. Dadurch werden Berechtigungen dieses Teams &uumlbernommen. Siehe auch die Hilfe zu <a href="equipes.php">Teams</a>. Im Benutzer-Untermen&uuml <a href="../user_groupes.php"> Teams</a> kann die Liste der Teams bearbeitet werden.
+
+	<h3> Berechtigungen </h3>
+	<b> Benutzer</b>: Setzt die Berechtigung f&uumlr die &Aumlnderung aller m&oumlglichen Benutzerdaten. Es gibt keine Unterteilung in einzelne Benutzerdaten. Siehe auch <a href="../user_list.php"> Benutzer verwalten</a>.
+	<br><br>
+	<b> Projekte</b>: Setzt die Berechtigung f&uumlr die &Aumlnderung aller m&oumlglichen Projekteigenschaften. Das beinhaltet nicht die Berechtigungen an den Aufgaben, die den Projekten zugeordnet sind. Es gibt keine Unterteilung in Teile von Projekten. Siehe auch <a href="../projets.php"> Projekte verwalten</a>.
+	<br><br>
+	<b> Projektgruppen</b>: Einrichten von Projektgruppen, denen Projekte zugeordnet werden k&oumlnnen. Wird im Projekte-Untermen&uuml <a href="../groupe_list.php"> Projektgruppen</a> gemacht.
+	<br><br>
+	<b> Planung &aumlndern</b>: Legt fest, was der Benutzer in der Planung &aumlndern kann. Das betrifft nicht unbedingt nur die Auswahl der sichtbaren Aufgaben.
+	<br> <I> Nur Lesezugriff</i> erlaubt gar keine &Aumlnderungen. 
+	<br> Mit der Option <i> nur Projekte des Benutzers</i> k&oumlnnen nur Projekte bearbeitet werden, denen der Benutzer in der Projektverwaltung als Besitzer zugeordnet wurde (siehe <a href = "../projets.php "> Projekte</a>). 
+	<br> Die Option <i> Aufgaben, denen dieser Benutzer zugewiesen ist</i> erm&oumlglicht die &Aumlnderung von Aufgaben der eigenen Projekte und von zugewiesenen Aufgaben anderer Projekte. 
+	<br> Die Option <i> f&uumlr alle Projekte</i> schliesslich erlaubt &Aumlnderungen an allen Aufgaben aller angezeigten Projekte.
+	<br><br>
+
+	<b> Sichtbare Projekte</b>: Mit der Option <i> alle Projekte </i> sieht der Benutzer alle vorhandenen Projekte (solange er keine durch Filter ausgeblendet hat). 
+	<br> Mit der Option <i>Nur Projekte des Teams</i> werden nur Projekte angezeigt, die mindestens einem Benutzer des selben Teams geh&oumlren. Es kann keine Liste einzelner Projekte festgelegt werden. F&uumlgen Sie wenigstens eine Aufgabe zu jedem neuen Projekt, damit jeder Benutzer des selben Teams das Projekt bearbeiten kann.
+	<br> Die Option <i> Nur Projekte des Benutzers oder ihm zugewiesene Projekte</i> erlaubt die Anzeige aller Aufgaben von Projekten des Benutzers und die Aufgaben, welche ihm zugewiesen sind.
+	<br> Die Option <i> Nur Aufgaben dieses Benutzers </i> besschr&aumlnkt die Anzeige auf die Aufgaben dieses Benutzers.
+	<br><br>
+	<b> Sichtbare Benutzer</b>: In der Planungsansicht k&oumlnnen <i>Alle Benutzer </i> angezeigt werden oder nur bestimmte Benutzer. Die Option <i>Liste der Benutzer</I> &oumlffnet daf&uumlr einen Auswahlfilter. Einschr&aumlnkungen, die hier getroffen werden, wirken sich nur auf die Planungsansicht aus. Benutzer mit der Berechtigung zum &Aumlndern von Benutzerrechten k&oumlnnen in der Benutzerverwaltung auch alle anderen Benutzer sehen.
+	<br><br>
+	<b> Orte</b>: Berechtigung zur Verwaltung aller Orte im Untermen&uuml <a href="../lieux.php"> Orte </a>in den Einstellungen. Diese Berechtigung findet nur Anwendung, wenn das optionale Orte-Modul in den Einstellungen aktiviert ist.
+	<br><br>
+	<b> Ressourcen</b>: Erlaubt die Verwaltung von Ressourcen im Untermen&uuml <a href="../ressources.php"> Ressourcen </a>in den Einstellungen. Diese Berechtigung findet nur Anwendung, wenn das optionale Ressourcen-Modul in den Einstellungen aktiviert ist.
+	<br><br>
+	<b> Einstellungen</b>: Erlaubt den Zugriff auf alle Parameter von SOPlanning.
+	<br><br>
+	<b> Statistik</b>: Erlaubt die Darstellung von statistischen Daten in Diagrammen. Diese Daten sind nicht durch andere Berechtigungen des Benutzers beschr&aumlnkt.
+
+	<h3> Anpassung und Benachrichtigungen </h3>
+	Der Benutzer kann in der Planung  <i> sichtbar </i> oder nicht sichtbar sein. Ein nicht sichtbarer Benutzer kann sich trotzdem einloggen und in der Planung arbeiten, aber es k&oumlnnen ihm keine Aufgaben zugewiesen werden.
+	<br>
+	Es k&oumlnnen <i> e-Mail-Benachrichtigungen</i> freigeschaltet werden. In diesem Fall erh&aumllt der Benutzer immer dann eine e-Mail, wenn ihm eine Aufgabe zugewiesen oder eine seiner Aufgaben ge&aumlndert oder gel&oumlscht wird.
+	<br>
+	Es kann auch eine <i>Farbe</i> f&uumlr den Benutzer gew&aumlhlt werden. Diese Farbe erm&oumlglicht die optische Unterscheidung der Benutzer (linke Spalte) in der Planungsansicht. Gibt man allen Benutzern verschiedene Farben, so bekommt man einen leichteren &Uumlberblick &uumlber die Aufgaben der Benutzer, ohne die Details der Aufgaben aufrufen zu m&uumlssen.
+
+	<h3> Pers&oumlnliche Daten </h3>
+	Diese Felder sind optional und erm&oumlglichen die Speicherung von Zusatzinformationen zu jedem Benutzer. Diese Informationen sind nur den Benutzern mit Benutzerverwaltungsberechtigungen zug&aumlnglich und werden nicht in der Planung angezeigt.
+"""
+
+equipes_titre = "Teams"
+
+equipes_contenu = """
+	Mit Hilfe von Teams k&oumlnnen Projekte gruppiert werden.
+	<br>
+	Teams k&oumlnnen in bestimmten F&aumlllen die Benutzerrechte beeinflussen, siehe <a href="../aide/utilisateurs.php">Berechtigungen</a>.
+	<br>
+	Teams verbessern die &Uumlbersicht bei der Benutzerverwaltung (man kann nach Teams filtern) und in der Planung (gruppieren in der Funktion "Sortieren").
+	<br>
+	Im Untermen&uuml <a href="../user_groupes.php">Team</a> der Benutzerverwaltung k&oumlnnen Teams erstellt, ge&aumlndert oder gel&oumlscht werden.
+"""
+
+projets_titre = "Projekte"
+
+projets_contenu = """
+	Eine Aufgbe ist immer mit einem Projekt und einem Benutzer verkn&uumlpft. Stellen Sie vor der Erstellung einer Aufgabe sicher, dass das entsprechende Projekt schon existiert.
+	<br>
+	Es k&oumlnnen beliebig viele Projekte erstellt werden. Sie k&oumlnnen jederzeit ge&aumlndert oder gel&oumlscht werden.
+
+	<h3> Liste der Projekte </h3>
+	In der Grundeinstellung werden nur <i>aktive Projekte</i> angezeigt. Die Statusauswahl findet nur Anwendung auf die Liste und beeinflusst nicht die Planungsanzeige.
+	<br>
+	Die Projektliste kann auch nach Datum, nach Projektgruppe oder nach Suchwort im Projekttitel gefiltert werden. Eine Sortierung kann letztlich auch durch einen Klick auf die Spalten&uumlberschrift erfolgen.
+	<br>
+	Die Liste beginnt mit den Projekten, die keiner Gruppe angeh&oumlren und dann folgen die anderen Projekte, nach Gruppe sortiert.
+	<br>
+	<b>Achtung:</b> Wird ein Projekt gel&oumlscht, so werden alle Aufgaben dieses Projekts mitgel&oumlscht!
+
+	<h3> Projekt-Information </h3>
+	Die <i>ID</i> ist eine Zeichenkette, die f&uumlr jedes Projekt eindeutig ist. Diese ID wird auf den Zellen in der Planung angezeigt.
+	<br>
+	Der <i>Projektname</i> ist die einzige weitere erforderliche Information, die zum Erstellen eines Projektes zwingend ben&oumltigt wird.
+	<br>
+	Man kann eine <i>Projektgruppe</i> erstellen, um Projekte in der Projektliste oder der Planung gruppieren zu k&oumlnnen.
+	<br>
+	Auch der <i>Status </i> erm&oumlglicht es, Projekte zu sortieren. In der Grundeinstellung sind aufgegebene und archivierte Projekte ausgeblendet.
+	<br>
+	Die <i>Auslastung</i>, das <i>Lieferdatum</i>, der <i>Link</i> und der <i/>Kommentar</i> sind Zusatzinformationen, die ohne weitere Auswirkungen auf die Planung zur Projektbeschreibung verwendet werden k&oumlnnen.
+	<br>
+	Die <i>Farbe</i> des Projekts ist die Hintergrundfarbe der Aufgaben in der Projektansicht. W&aumlhlen sie passende Farben f&uumlr verschiedene Projekte, um eine optimale &Uumlbersicht zu erhalten.
+"""
+
+groupes_titre = "Projektgruppen"
+
+groupes_contenu = """
+	Projektgruppen k&oumlnnen Projekte visuell zusammenfassen. Sie haben keinen Einfluss auf Benutzerberechtigungen.
+	<br>
+	Projektgruppen verbessern die &Uumlbersicht in der Projektverwaltung (nach Gruppen gelistet) und in der Planung (Option im Men&uuml "Sortieren").
+	<br>
+	Die Funktion <a href="../groupe_list.php">Projektgruppen</a> erm&oumlglicht die beliebige Erstellung, &Aumlnderung oder L&oumlschung von Projektgruppen.
+"""
+
+faq_titre = "FAQ"
+
+faq_contenu = """
+	<b> Kann ich eine Aufgabe erstellen, ohne eine Person zuzuordnen? </b>
+	<br>
+	Nein, das SOPlanning-Prinzip basiert auf der Zuordung einer Person zu einem Projekt durch eine Aufgabe zu einer bestimmten Zeit.
+	<br><br>
+
+	<b> Wie handhabt man Urlaub oder Abwesenheit in SOPlanning? </b>
+	<br>
+	SOPlanning kann nicht alle komplexen Urlaubsregeln abbilden, die Regeln sind in jedem Land und in jeder Organisation verschieden.
+	<br> Der einfachste Weg ist ein Projekt mit dem Namen "abwesend" und einer passenden Farbe zu erstellen und dann Aufgaben zu erstellen, welche die Abwesenheitszeiten repr&aumlsentieren. So sieht man in der Planungsansicht direkt, weche Benutzer in den betreffenden Zeiten nicht da sind.
+	<br><br>
+
+	<b> Ich erhalte keine e-Mail-Benachrichtigungen. Woran liegt das? </b>
+	<br>
+	<ul>
+		<li> Klicken Sie oben rechts auf Ihren Benutzernamen und pr&uumlfen Sie, ob Ihre e-Mail-Adresse korrekt im Benutzerprofil eingetragen ist. </ li>
+		<li> Pr&uumlfen Sie, ob der Empfang von Benachrichtigungen aktiviert ist. </ li>
+		<li> Pr&uumlfen Sie in den Einstellungen von SOPlanning ob die SMTP-Parameter f&uumlr das Senden von e-Mails korrekt sind (benutzen Sie die Test-Funktion, um sicherzustellen, dass der e-Mail-Versand funktioniert) </ li>
+		<li> Pr&uumlfen Sie, ob der Ersteller der Aufgaben die Option "[x] per e-Mail benachrichtigen" aktiviert hat. </ li>
+		<li> HINWEIS: Wenn Sie f&uumlr sich selbst eine Aufgabe erstellen, erhalten Sie keine e-Mail! </ li>
+	</ul>
+	<br>
+
+	<b> Kann man einen Benutzer meheren Teams zuordnen? </b>
+	<br>
+	Nein, momentan kann SOPlanning einen Benutzer nur einem einzigen Team zuordnen. Dadurch bleibt die Verwaltung der Benutzerberechtigungen einfach. Kontaktieren Sie uns, wenn Sie eigene spezielle Berechtigungen w&uumlnschen.
+	<br><br>
+
+	<b> Wie konfiguriert man Feiertage? </b>
+	<br>
+	Rufen Sie <a href="../feries.php"> Einstellungen/Feiertage </a> auf. Man kann l&aumlnderpezifische Feiertage automatisch importieren oder einzeln eintragen. In der Planungsanzeige erscheint an Feiertagen eine Zelle mit der ID "FT".
+
+"""
+
+lieux_titre = "Orte"
+
+lieux_contenu = """
+	Orte sind zus&aumltzliche Merkmale, die man Aufgaben zuordnen kann. <br>
+	Dieses Modul ist optional und kann jederzeit in den Einstellungen aktiviert oder dekativiert werden.
+	<br>
+	Wenn das Modul aktiviert ist, erscheint eine Auswahlliste mit den verf&uumlgbaren Orten im Auftragsformular. Die Liste der Orte kann in Untermen&uuml <a href="../lieux.php">Orte</a> der Einstellungen bearbeitet werden.
+	<br>
+	Die Auswahl eines Ortes in der Aufgabenerstellung ist optional, es muss kein Ort gew&aumlhlt werden, selbst wenn das Modul aktiviert ist.
+	<br><br>
+	F&uumlr jeden Ort kann definiert werden, ob er <b>exklusiv</b> ist. Wenn ein Ort exklusiv ist, k&oumlnnen keine weiteren Aufgaben f&uumlr den gleichen Ort zur gleichen Zeit erstellt werden. Wenn der Ort nicht exklusiv ist, kann er beliebig vielen Aufgaben zugeordnet werden.
+	<br><br>
+	Wurde einer Aufgabe ein Ort zugewiesen, so kann man den Ort wieder entfernen, in dem man die Aufgabe erneut bearbeitet.
+"""
+
+faq_roi = "Project cost management / profitability"
+roi_contenu = """
+	The profitability calculation allows you to know the consumed/remaining amount on projects compared to the initial budget, whether on the total hours or the planned budget.
+	<br><br>
+	In order to make the best use of this profitability information, here is what to do:
+	<br>
+	<ul>
+		<li>Enter a default hourly rate in each employee form ("Configuration" tab)</li>
+		<li>Indicate in the project file the planned/initial budget for amount and hours</li>
+		<li>Modify (if necessary) the project form to indicate specific hourly rates for this project. Otherwise the employee's default rate will apply</li>
+		<li>Assign tasks to projects and collaborators</li>
+		<li>Give authorized people access to the Statistics / ROI module on projects (new right added)</li>
+		<li>Consult the figures in the project ROI module: the tool calculates the budget consumed (amount and hours), the remaining budget, and profitability</li>
+	</ul>
+"""

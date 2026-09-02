@@ -1,0 +1,30 @@
+
+
+INSERT INTO `planning_config`(`cle`, `valeur`, `commentaire`) VALUES ('PASSWORD_COMPLEXITY', '0', '1 for CNIL rules');
+
+CREATE TABLE `planning_right_on_projet`  (
+  `right_id` int(11) NOT NULL,
+  `owner_id` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `allowed_id` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`right_id`) USING BTREE,
+  INDEX `owner_id`(`owner_id`) USING BTREE,
+  INDEX `allowed_id`(`allowed_id`) USING BTREE,
+  CONSTRAINT `planning_right_on_projet_ibfk_1` FOREIGN KEY (`allowed_id`) REFERENCES `planning_projet` (`projet_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `planning_right_on_projet_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `planning_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `planning_filtre_perso`  (
+  `filtre_perso_id` int(0) NOT NULL,
+  `filtre_perso_nom` varchar(100) NOT NULL,
+  `filtre_perso_contenu` text NULL,
+  `module` varchar(50) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `date_creation` datetime(0) NOT NULL,
+  `date_modif` datetime(0) NULL,
+  PRIMARY KEY (`filtre_perso_id`),
+  CONSTRAINT `filtre_user_id` FOREIGN KEY (`user_id`) REFERENCES `planning_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_general_ci;
+
+
+UPDATE  `planning_config` SET  valeur ='1.54.00' WHERE  `planning_config`.`cle` =  'CURRENT_VERSION';
+

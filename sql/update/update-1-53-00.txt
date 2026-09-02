@@ -1,0 +1,35 @@
+
+UPDATE planning_user SET tutoriel = NULL;
+
+ALTER TABLE `planning_lieu` ADD COLUMN `couleur` varchar(6) NULL AFTER `exclusif`;
+
+ALTER TABLE `planning_ressource` ADD COLUMN `couleur` varchar(6) NULL AFTER `exclusif`;
+
+ALTER TABLE `planning_ressource` MODIFY COLUMN `nom` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT '' AFTER `ressource_id`;
+
+ALTER TABLE `planning_lieu` MODIFY COLUMN `nom` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT '' AFTER `lieu_id`;
+
+INSERT INTO `planning_config`(`cle`, `valeur`, `commentaire`) VALUES ('PLANNING_WEEKEND_IN_GREY', '0', 'Display saturday and sunday in grey even if included if working days');
+
+INSERT INTO `planning_config` VALUES ('PLANNING_DAYS_OF_WEEK_DISPLAY', '0', 'Define how each day is display (normal, grey, hidden)');
+SET @days_included = (SELECT valeur FROM planning_config WHERE cle = 'DAYS_INCLUDED');
+SET @differencie_weekend = (SELECT valeur FROM planning_config WHERE cle = 'PLANNING_DIFFERENCIE_WEEKEND');
+SET @json_value = CONCAT(
+    '{',
+    '"1": {"inclus" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "grise" : "0"},',
+    '"2": {"inclus" : "', IF(FIND_IN_SET('2', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "grise" : "0"},',
+	  '"3": {"inclus" : "', IF(FIND_IN_SET('3', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "grise" : "0"},',
+	  '"4": {"inclus" : "', IF(FIND_IN_SET('4', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "grise" : "0"},',
+	  '"5": {"inclus" : "', IF(FIND_IN_SET('5', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(FIND_IN_SET('1', @days_included) > 0, "1", "0"), '", "grise" : "0"},',
+	  '"6": {"inclus" : "', IF(FIND_IN_SET('6', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(@differencie_weekend = '1', "1", "0"), '", "grise" : "', IF(@differencie_weekend = '1', '1', '0'), '"},',
+		'"7": {"inclus" : "', IF(FIND_IN_SET('0', @days_included) > 0, "1", "0"), '", "affiche" : "', IF(@differencie_weekend = '1', "1", "0"), '", "grise" : "', IF(@differencie_weekend = '1', '1', '0'), '"}',
+    '}'
+);
+UPDATE planning_config SET valeur = @json_value WHERE cle = 'PLANNING_DAYS_OF_WEEK_DISPLAY';
+
+DELETE FROM planning_config WHERE cle = 'DAYS_INCLUDED';
+DELETE FROM planning_config WHERE cle = 'PLANNING_DIFFERENCIE_WEEKEND';
+
+
+UPDATE  `planning_config` SET  valeur ='1.53.00' WHERE  `planning_config`.`cle` =  'CURRENT_VERSION';
+

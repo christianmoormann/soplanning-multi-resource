@@ -1,0 +1,587 @@
+/* 4  couleurs */
+/*
+ 50 : #F9FBE7
+ 300 : #DCE775
+ 500 : #CDDC39
+ 700 : #AFB42B
+
+*/
+/* main */
+body {
+	background-color: #F9FBE7;
+	background-image:radial-gradient(#F9FBE7,white);		
+}
+
+/* link */
+a,a:focus,a:active,a:hover {
+    color: #CDDC39;
+}
+
+/* box */
+.soplanning-box {
+	border: 1px solid #ddd;
+	background-color: #ffffff;
+}
+
+/* project form */
+.task-group-head, .project-group-head
+{
+	font-weight:bold;
+	background-color:#CDDC39;
+	color:#fff;
+}
+
+/* navbar */
+.navbar-inverse .brand,.navbar-inverse .nav>li>a {
+	color: #ffffff;
+}
+.navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+	background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+}
+.navbar-footer {
+   background-color: red;
+}
+
+#soplanning_title
+{
+	color:#FFFFFF;
+	display: inline-block;
+}
+
+/* navpills */
+.nav-pills>a.active, .nav-pills>a:hover, .nav-link.active {
+    color: #fff !important;
+    background-color: #CDDC39 !important;
+}
+
+/* tooltip */
+.divTooltip > div {
+	background-color: #ffffff !important;
+}
+
+.divTooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #ccc !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+  background-color: white !important;
+}
+
+/* bootstrap-alert */
+.alert-success {
+    color: #468847;
+	border-color: #b2dba1;
+	background-color: #dff0d8;
+}
+
+.alert-danger, .alert-error {
+	color: #b94a48;
+	background-color: #f2dede;
+	border-color: #eed3d7;
+}
+
+/* Planning Design */
+
+/* Planning Header */
+.planning_head_month
+{
+	background-color: #CDDC39;
+	color: #000;
+	font-size:15px;
+	padding:0px;
+	background-clip: padding-box
+}
+
+.planning_head_week
+{
+	background-color: #DCE775;
+	color: #000;
+	font-size:12px;
+	padding-top:3px;
+	padding-bottom:3px;
+	background-clip: padding-box
+}
+
+.planning_head_day
+{
+	background-color: #DCE775;
+	color: #000;
+	font-size:12px;
+	font-weight: normal;
+	padding:3px;
+	background-clip: padding-box
+}
+
+.planning_head_dayname
+{
+	background-color: #DCE775;
+	color: #000;
+	font-size:12px;
+	padding:2px;
+	background-clip: padding-box
+}
+
+.planning_head_month a
+{
+	color:#FFFFFF;
+	text-decoration:none;
+	padding: 2px;
+	white-space: nowrap;
+}
+
+.planning_head_week a
+{
+	color:#FFFFFF;
+	text-decoration:none;
+	padding:2px;
+	white-space: nowrap;
+}
+
+.planning_head_day a
+{
+	color:#FFFFFF;
+	text-decoration:none;
+	padding: 2px;
+	white-space: nowrap;
+}
+
+.planning_head_dayname a
+{
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.planning_head_month a:hover
+{
+	background-color:#FFFFFF;
+	border-radius:5px;
+	padding:3px;
+	color:#CDDC39;
+}
+
+.planning_head_week a:hover
+{
+	background-color:#FFFFFF;
+	border-radius:5px;
+	padding:3px;
+	color:#DCE775;
+}
+
+.planning_head_day a:hover
+{
+	background-color:#FFFFFF;
+	border-radius:5px;
+	padding:3px;
+	color:#DCE775;
+}
+
+.planning_head_dayname a:hover
+{
+	background-color:#FFFFFF;
+	border-radius:5px;
+	padding:3px;
+	color:#DCE775;
+}
+
+.planning_head_hour
+{
+	background-color: #DCE775;
+	color: #000;
+	font-size:12px;
+	font-weight: normal;
+	padding-top:6px;
+	padding-bottom:6px;
+	padding-left:4px;
+	padding-right:4px;
+	background-clip: padding-box;
+	white-space: nowrap;
+}
+
+.planning_switch {
+	background-color:#CDDC39;
+}
+
+.taskDivComment
+{
+	border:1px solid #F9FBE7;
+}
+
+.taskDivComment:hover
+{
+    background-color: #F9FBE7;
+}
+
+/* Button */
+
+.btn-info {
+    border-color: #CDDC39;
+    background-color: #CDDC39;
+	color:#000;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active {
+    background-color: #CDDC39 !important;
+    background-image: none !important;
+	border-color: #DCE775 !important;
+	color:#000 !important;
+}
+.btn-default {
+    text-shadow: 0 1px 0 #fff;
+    border-color: #dbdbdb;
+    border-color: #ccc;
+}
+.btn-primary {
+    border-color: #DCE775;
+	color:#000;
+	outline-color: #DCE775 !important;
+	background-color: #CDDC39 !important;
+	background-image: none !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:disabled {
+    background-color: #CDDC39 !important;
+    background-image: none !important;
+	border-color: #DCE775 !important;
+	color:#000;
+}
+.btn-outline-light:not(:disabled):not(.disabled).active, .btn-outline-light:not(:disabled):not(.disabled):active
+{
+	background-color: #DCE775;
+}
+
+/* Pagination */
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #CDDC39;
+    border-color: #DCE775;
+}
+.pagination>li>a, .pagination>li>span
+{
+    color: #CDDC39;
+}
+
+/* Select 2 */
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+  color: white !important;
+  background-color: #CDDC39 !important;
+}
+
+/* Table */
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color:  #f9f9f9;
+}
+.table-hover > tbody > tr:hover {
+  background-color:  #F9FBE7;
+}
+
+/* Multi-select */
+.ms-options-wrap > .ms-options > ul li.selected label {
+  background-color: #F9FBE7 !important;
+}
+.ms-options-wrap > .ms-options > ul label.focused, .ms-options-wrap > .ms-options > ul label:hover {
+  background-color: #F9FBE7 !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #262626;
+  background-image: -webkit-linear-gradient(top, #F9FBE7 0%, #F9FBE7 100%);
+  background-image:      -o-linear-gradient(top, #F9FBE7 0%, #F9FBE7 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F9FBE7), to(#F9FBE7));
+  background-image:         linear-gradient(to bottom, #F9FBE7 0%, #F9FBE7 100%);
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+  background-image: linear-gradient(to bottom,#CDDC39 0,#DCE775 100%);
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #e8e8e8;
+  background-repeat: repeat-x;
+}
+
+/* Jquery datepicker */
+.ui-widget-header {
+    border: 1px solid #CDDC39 !important;
+    background: #CDDC39 !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #F9FBE7 !important;
+    background: #F9FBE7 !important;
+    font-weight: bold;
+    color: #CDDC39 !important;
+}
+
+.ui-state-default.ui-state-active {
+    border: 1px solid #CDDC39 !important;
+    background: #CDDC39 !important;
+    font-weight: bold;
+    color: #000	 !important;
+}
+
+.ui-datepicker-today {
+    border: 1px solid #CDDC39 !important;
+    background: #CDDC39 !important;
+    font-weight: bold;
+    color: #000 !important;
+}
+
+/* Planning Content */
+.planningContent td.week {
+	background-color: #ffffff;
+	font-size: 9px;
+	z-index: 0;
+	padding:2px;
+}
+
+.planningContent td.week:hover:not(.read-only) {
+	background-color: #F9FBE7;
+	cursor: pointer;
+}
+
+.planningContent td.week:active:not(.read-only) {
+	background-color: #CDDC39;
+	cursor: pointer;
+}
+
+.planningContent td, .planningContent th {
+	border: 1px solid #ebeff2;
+}
+
+.planningContent td.weekend {
+	background-color: #F9FBE7;
+	font-size: 9px;
+	filter:alpha(opacity=60);
+	-moz-opacity:.60;
+	opacity:.60;
+	position:relative;
+	z-index:0;
+}
+
+.planningContent td.feries,.feries {
+	background-color: #F9FBE7;
+	font-size: 9px;
+	filter:alpha(opacity=60);
+	-moz-opacity:.60;
+	opacity:.60;
+	position:relative;
+	z-index:0;
+}
+
+/* planning team div separation */
+.planning_team_div, .planning_team_div_hour
+{
+	background-color:#DCE775 !important;
+	color:#000000 !important;
+}
+
+th.planning_team_div, th.planning_team_div_hour
+{
+    border-right:1px solid #DCE775 !important;
+	z-index:7!important;
+}
+
+td.planning_team_div, td.planning_team_div_hour
+{
+    border-left:1px solid #DCE775 !important;
+}
+
+/* tableau */
+
+.planningContent th {
+	vertical-align: middle;
+	text-align: center;
+	border:1px solid #ebeff2;
+	height: 20px;
+	background-clip: padding-box;
+}
+
+.planningContent {
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+}
+
+
+/* project cell */
+.cellProject,.cellProjectBiseau1,.cellProjectBiseau2 {
+	position: relative;
+	cursor: pointer;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-bottom: 4px;
+	margin-top: 1px;
+	margin-left:2px;
+	margin-right:2px;
+	text-align: left;
+	font-size: 10px;
+	vertical-align: top;
+	line-height: 100%;
+	border-radius: 3px 3px 3px 3px;
+}
+.cellProjectBiseau1:before{
+	content: attr(data-content);
+	position:absolute;
+	text-align: left;
+	width:100%;
+	clip-path: polygon(33% 0, 100% 0, 100% 100%, 50% 100%);
+	color:black;
+}
+
+.cellProjectBiseau2:before{
+	content: attr(data-content);
+	position:absolute;
+	text-align: left;
+	width:100%;
+	clip-path: polygon(0 0, 31% 0, 61% 100%, 0 100%);
+	color:black;
+}
+
+/* holliday cell */
+.cellHolidays {
+	padding-top: 2px;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	text-align: center;
+	font-size: 9px;
+	background: none repeat scroll 0 0 #808080;
+	color: #ffffff;
+	line-height: 100%;
+	border-radius: 3px 3px 3px 3px;
+}
+
+/* today column */
+.planningContent th.today {
+	background-color: #AFB42B;
+	color: #000;
+}
+
+.planningContent td.today {
+	background-color: #AFB42B;
+	color: #000;
+	z-index: 0;
+}
+
+
+/* People div  */
+.planningFirstCol {
+	background-color: #CDDC39;
+	color: #FFFFFF;
+	font-weight: normal;
+	padding: 0px 0px 0px 0px;
+	vertical-align: middle;
+	text-align:left;
+	padding-left:5px;
+	padding-right:5px;
+	min-width:120px;
+}
+
+.planningFirstRowCol {
+	background-color: #CDDC39;
+	color: #FFFFFF;
+	font-weight: normal;
+	padding: 0px 0px 0px 0px;
+	vertical-align: middle;
+	text-align:left;
+	padding-left:5px;
+	padding-right:5px;
+	min-width:120px;
+}
+
+.planningFirstColMin {
+	background-color: #CDDC39;
+	color: #FFFFFF;
+	font-weight: normal;
+	padding: 0px 0px 0px 0px;
+	vertical-align: middle;
+	text-align:left;
+	padding-left:5px;
+	padding-right:5px;
+	min-width:20px;
+	height:20px;
+	font-size:12px;
+}
+.planningFirstColHour {
+	background-color: #CDDC39;
+	color: #FFFFFF;
+	font-weight: normal;
+	padding: 0px 0px 0px 0px;
+	vertical-align: top !important;
+	text-align:left;
+	padding-left:5px;
+	padding-right:5px;
+	min-width:50px;
+	height:20px;
+	padding-top:10px;
+	font-size:16px;
+}
+
+/* Translation choice div */
+#divTranslation
+{
+	display:block;
+}
+
+/* Calendar PDF Export */
+.calOpenDay{
+	background-color: #BDE1EC;
+}
+
+.calCloseDay{
+	background-color: #88CADD;
+}
+
+.calDisabledDay{
+	background-color: #E1E2E2;
+}
+.calendarContent {
+	border-color: #3DA9C9;
+	border-width: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color:#666666;
+}
+
+.calendarContent td {
+	border-width:1px;
+	border-color:#3DA9C9;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color:#666666;
+}
+
+.switchCell {
+	background-color: #F9FBE7;
+    vertical-align:middle;
+	margin: 5px;
+	border: 1px solid white;
+}
+
+.planning_team_div,.planning_team_div_hour {font-size:16px !important;padding-top:5px;padding-bottom:5px;font-weight:700;text-align:left !important;white-space:nowrap}
+
+td.planning_team_div,th.planning_team_div
+{
+ position: sticky;
+ position: -webkit-sticky;
+ top:261px !important;
+ left: 6px;
+ background-clip: padding-box;
+ z-index:2;
+ border-bottom:0px;
+}
+
+.planning_team_div_hour
+{
+ position: sticky;
+ position: -webkit-sticky;
+ top:222px !important;
+ left: 6px;
+ z-index:2;	
+ border-bottom:0px !important;
+ border-top:0px !important;
+}

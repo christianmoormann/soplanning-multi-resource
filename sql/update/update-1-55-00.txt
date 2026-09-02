@@ -1,0 +1,11 @@
+
+
+UPDATE planning_user SET tutoriel = NULL;
+
+ALTER TABLE `planning_status` ADD COLUMN `inclure_dans_calcul` enum('oui','non') NOT NULL DEFAULT 'oui' AFTER `priorite`;
+
+DELETE FROM planning_config WHERE cle = 'PLANNING_REPEAT_HEADER';
+
+UPDATE  `planning_config` SET  valeur ='1.55.00' WHERE  `planning_config`.`cle` =  'CURRENT_VERSION';
+
+

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+<Files "*.inc">
+	require all denied
+</Files>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+</IfModule>

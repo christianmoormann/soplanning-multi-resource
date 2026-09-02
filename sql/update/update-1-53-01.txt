@@ -1,0 +1,6 @@
+
+
+INSERT INTO `planning_config`(`cle`, `valeur`, `commentaire`) VALUES ('WHITELIST_UPLOAD', 'pdf,docx,doc,xls,xlsx,png,jpg,jpeg,gif', 'File extension allowed for upload');
+
+UPDATE  `planning_config` SET  valeur ='1.53.01' WHERE  `planning_config`.`cle` =  'CURRENT_VERSION';
+

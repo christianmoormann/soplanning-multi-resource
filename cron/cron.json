@@ -1,0 +1,12 @@
+{
+  "php_bin": "/usr/bin/php8.1",
+  "tasks": [
+    {
+    "name": "Email notification before and after",
+    "task": "cron/cron_email_notification_before_after.php",
+    "interval": "*/5 * * * *",
+    "enabled": true,
+    "php_bin": "/usr/bin/php8.1"
+    }
+  ]
+}

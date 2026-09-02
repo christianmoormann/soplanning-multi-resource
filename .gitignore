@@ -1,0 +1,14 @@
+# --- secrets / instance-specific (never send upstream) ---
+config.inc
+database.inc
+www/base.inc
+cron/base.inc
+debug.txt
+# --- runtime / volatile ---
+mutex_file.txt
+*.log
+smarty/cache/
+smarty/templates_c/
+www/upload/
+history/
+holidays/

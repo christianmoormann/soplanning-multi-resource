@@ -1,0 +1,41 @@
+tr, td, select, input, body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #666666;
+}
+
+.w40 {
+  width: 40px;
+}
+
+.calCell {
+  width: 12px;
+  text-align: center;
+}
+
+.calCellProject {
+  display: inline;
+  position: relative;
+  text-align: center;
+  font-size: 6px;
+  margin-left: 1px;
+  width: 18px !important;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.calendarContent {
+  border-style: solid;
+  padding: 0px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+.calendarContent td {
+  border-style: solid;
+}
+
+.calMonth {
+  text-align: center;
+  font-weight: bold;
+}

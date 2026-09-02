@@ -1,0 +1,57 @@
+
+ALTER TABLE `planning_ferie` MODIFY COLUMN `date_ferie` date NOT NULL FIRST;
+
+ALTER TABLE `planning_periode`  ADD INDEX `idx_user_date_debut` (`user_id`, `date_debut`),  ADD INDEX `idx_projet_date_debut` (`projet_id`, `date_debut`),  ADD INDEX `idx_parent_date_debut` (`parent_id`, `date_debut`);
+ALTER TABLE `planning_periode`  ADD INDEX `idx_link_id` (`link_id`);
+ALTER TABLE `planning_periode`  ADD INDEX `idx_statut_tache` (`statut_tache`),  ADD INDEX `idx_lieu_id` (`lieu_id`),  ADD INDEX `idx_ressource_id` (`ressource_id`);
+ALTER TABLE `planning_periode`  ADD INDEX `idx_date_debut` (`date_debut`),  ADD INDEX `idx_date_fin` (`date_fin`);
+ALTER TABLE `planning_periode` ADD INDEX `idx_createur_id` (`createur_id`);
+ALTER TABLE `planning_user`  ADD INDEX `idx_visible_planning` (`visible_planning`);
+ALTER TABLE `planning_projet`  ADD INDEX `idx_statut` (`statut`),  ADD INDEX `idx_createur_id` (`createur_id`);
+ALTER TABLE `planning_audit`  ADD INDEX `idx_type` (`type`);
+ALTER TABLE `planning_right_on_user`  ADD INDEX `idx_owner_allowed` (`owner_id`, `allowed_id`);
+ALTER TABLE `planning_right_on_projet` ADD INDEX `idx_owner_allowed` (`owner_id`, `allowed_id`);
+ALTER TABLE `planning_filtre_perso` ADD INDEX `idx_user_id` (`user_id`);
+ALTER TABLE `planning_groupe`  ADD INDEX `idx_ordre` (`ordre`);
+
+ALTER TABLE `planning_periode` MODIFY COLUMN `duree_reelle` decimal(10, 2) NULL DEFAULT NULL AFTER `pause`;
+
+ALTER TABLE `planning_user` MODIFY COLUMN `tarif_horaire_defaut` decimal(10, 2) NULL DEFAULT NULL AFTER `tutoriel`;
+
+ALTER TABLE `planning_projet_user_tarif` MODIFY COLUMN `tarif_horaire` decimal(10, 2) NULL DEFAULT NULL AFTER `projet_id`;
+
+ALTER TABLE `planning_projet` MODIFY COLUMN `budget_montant` decimal(10, 2) NULL DEFAULT NULL AFTER `createur_id`, MODIFY COLUMN `budget_temps` decimal(10, 2) NULL DEFAULT NULL AFTER `budget_montant`, MODIFY COLUMN `montant_consomme` decimal(10, 2) NULL DEFAULT NULL AFTER `budget_temps`, MODIFY COLUMN `temps_consomme` decimal(10, 2) NULL DEFAULT NULL AFTER `montant_consomme`, MODIFY COLUMN `montant_restant` decimal(10, 2) NULL DEFAULT NULL AFTER `temps_consomme`, MODIFY COLUMN `temps_restant` decimal(10, 2) NULL DEFAULT NULL AFTER `montant_restant`;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+ALTER TABLE `planning_periode` ADD CONSTRAINT `fk_periode_statut_tache` FOREIGN KEY (`statut_tache`) REFERENCES `planning_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE `planning_projet` ADD CONSTRAINT `fk_projet_statut` FOREIGN KEY (`statut`) REFERENCES `planning_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER TABLE `planning_user` MODIFY COLUMN `password` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT NULL AFTER `login`;
+
+ALTER TABLE `planning_periode` 
+ADD COLUMN `notif_standard_destinataires` text NULL,
+ADD COLUMN `notif_avant_actif` enum('oui','non') NOT NULL DEFAULT 'non' AFTER `notif_standard_destinataires`,
+ADD COLUMN `notif_avant_destinataires` text NULL AFTER `notif_avant_actif`,
+ADD COLUMN `notif_avant_delai_type` enum('jour','heure','minute') NULL AFTER `notif_avant_destinataires`,
+ADD COLUMN `notif_avant_delai_nb` int NULL AFTER `notif_avant_delai_type`,
+ADD COLUMN `notif_avant_date_envoyee` datetime NULL AFTER `notif_avant_delai_nb`,
+ADD COLUMN `notif_apres_actif` enum('oui','non') NOT NULL DEFAULT 'non' AFTER `notif_avant_date_envoyee`,
+ADD COLUMN `notif_apres_destinataires` text NULL AFTER `notif_apres_actif`,
+ADD COLUMN `notif_apres_delai_type` enum('jour','heure','minute') NULL AFTER `notif_apres_destinataires`,
+ADD COLUMN `notif_apres_delai_nb` int NULL AFTER `notif_apres_delai_type`,
+ADD COLUMN `notif_apres_statuts_requis` varchar(100) NULL AFTER `notif_apres_delai_nb`,
+ADD COLUMN `notif_apres_date_envoyee` datetime NULL AFTER `notif_apres_statuts_requis`;
+
+ALTER TABLE `planning_user` ADD COLUMN `langue` varchar(2) NULL AFTER `tarif_horaire_defaut`;
+
+INSERT INTO `planning_config`(`cle`, `valeur`, `commentaire`) VALUES ('AI_OLLAMA_MODEL', '', '');
+INSERT INTO `planning_config`(`cle`, `valeur`, `commentaire`) VALUES ('AI_OLLAMA_URL', '', '');
+
+
+UPDATE  `planning_config` SET  valeur ='1.56.00' WHERE  `planning_config`.`cle` =  'CURRENT_VERSION';
+
+

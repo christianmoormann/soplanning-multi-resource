@@ -1,0 +1,47 @@
+SO Planning Installation Guide
+------------------------------
+
+----------------------------------------------------------
+ENGLISH
+You need first a PHP/MYSQL environment.
+If you don't have, you can try www.wampserver.com on Windows or install Apache and Mysql packages on linux.
+PHP7.3 or higher is needed.
+On apache, you will have to activate URL rewriting if not default setup.
+On Linux, don't forget to install the needed locale : ISO-8859-1
+
+IN CASE OF FRESH INSTALL (see below for an upgrade to higher version)
+
+1. Unpack your download
+
+   Unzip the SOPlanning file.
+   Only the www directory must be browsable under Apache, so point the web access/domain to the www directory directly. All other directories shouldn't be accessible.
+
+2. Verify some technical points :
+	- verify path of COMPIL_DIR in config.inc file, and give read/write access to this directory (default directory is soplanning/smarty/templates_c/)
+	- give read/write access to the file soplanning/database.inc
+	- give read/write access to directory soplanning/www/upload
+	- verify PHP safe mode status : safe mode must be disabled to make working smarty template.
+
+3. Just access to SOPlanning url (refer to the url accessible with your web server), it will automatically launch the installer.
+	In case of failure during install, you can do the manual install : 
+	- import the soplanning/sql/planning_mysql.sql file in a Mysql database (collation "latin1_general_ci")
+	- modify the database.inc file and put the right database parameters
+	Feel free to send your feedback about the installer and contact us in case of error / problem.
+
+4. Browse to the SO Planning www directory using a web browser.
+	Use admin / admin to connect the first time.
+	Do not forget to change this default password.
+	
+5. Install cron files for notifications, etc
+	Put in your crontab all php files present in /soplanning/cron directory (every minutes)
+	A json file is present to list them
+
+6. Give any feedback, problem, suggestion.
+	support@soplanning.org
+	Rodolphe, France
+
+
+IF YOU NEED TO UPGRADE AN EXISTING VERSION :
+
+You just have to overwrite all files, EXCEPT database.inc
+The system will automatically process the upgrade.

@@ -1,0 +1,321 @@
+
+aide_retour = "v glavni meni pomoči"
+
+index_contenu = """
+	<b>POMOČ GLAVNI MENI&uuml</b>
+	<br><br>
+	SOPlanning je enostaven za uporabo: naloge načrtujete tako, da projektu dodelite osebo.
+  <br>
+  Ko je to načelo ponotranjeno, SOPlanning ponuja številne funkcije za načrtovanje in spremljanje projektov, ljudi, virov ali krajev.
+  <br><br>
+  Spodaj so opisane vse funkcije SOPlanning.
+  <br>
+  Če imate kakršna koli vprašanja, se obrnite na <a target="_blank" href="http://www.soplanning.org">tehnično podporo</a> ali obiščite <a href="http:// forum .soplanning.org">Forum</a>.
+"""
+
+planning_titre = "Načrtovalni pogled"
+
+planning_contenu = """
+	<h3> Načini prikaza </h3>
+  Pod “DISPLAY” boste našli vse razpoložljive poglede v SOPlanning:
+  <br>
+  <ul>
+  <li> <b> glede na uporabnika</b>: SOPlanning navaja ljudi (uporabnike) v levem stolpcu in prikazuje naloge uporabnikov v ustrezni vrstici uporabnika. </li>
+  <li> <b> po projektu</b>: SOPlanning navaja projekte v levem stolpcu in prikazuje naloge projektov v ustrezni vrstici projekta. </li>
+  <li> <b> po lokaciji</b>: Ko je modul aktiviran, SOPlanning navede lokacije v levem stolpcu in prikaže dodeljene naloge v ustreznih vrsticah. </li>
+  <li> <b> glede na vir</b>: Ko je modul aktiviran, SOPlanning navede vire v levem stolpcu in prikaže dodeljene naloge v ustreznih vrsticah. </li>
+  <li> <b> Uporabniški dnevni red</b>: Ta prikaz koledarja prikazuje naloge uporabnikov na izbrani dan. Uporabniška imena se uporabljajo kot naslovi stolpcev, ura pa je v levem stolpcu. </Li>
+  <li> <b> Urni pogled</b>: Stolpci načrtovanja so časovni intervali s trajanjem ene ure. Omogoča prikaz projektov in nalog po urah. </Li>
+  <li> <b> Dnevni pogled</b>: Stolpci načrtovanja so dnevi, kar je osnovna nastavitev SOPlanninga. </li>
+  <li> <b> Pokaži prazne vrstice</b>: V osnovni nastavitvi SOPlanning prikaže vse vrstice načrtovanja (vse uporabnike, vse projekte). Če je ta možnost deaktivirana, bodo prikazane samo vrstice z opravili v izbranem obdobju. </Li>
+  <li> <b> Prikaži dnevno skupno</b>: prikaže dodatno vrstico pod načrtom, v kateri so prikazane skupne vrednosti stolpcev. </li>
+  <li> <b>Pokaži tabelo</b>: prikaže tabelarni seznam vseh opravil, ki so prikazana v načrtovanju. Ta besedilna predstavitev je nekoliko podrobnejša. </Li>
+  </ul>
+  Ko označite pogled v tem meniju, lahko preklapljate med različicami brez dodatnih nastavitev.
+
+  <h3> Izbira časovnega obdobja za prikaz </h3>
+	Načrt je prikazan od začetnega do končnega datuma (razen uporabniškega dnevnega reda, ki prikazuje samo en dan).
+  <br> Časovno obdobje izberete s klikom na gumb datum levo zgoraj.
+  <br> Odpreta se vnosni polji za začetni in končni datum. Izberete lahko tudi datum s seznamov predlogov (danes, prejšnji teden itd.). S klikom na gumb s povečevalnim steklom se podatki takoj prevzamejo.
+  <br> Uporabite lahko tudi gumbe na desni strani gumba za datum (tiste z "<" in ">"), da premaknete prikazano časovno obdobje. Skok je odvisen od nastavljenega časovnega obdobja: če sta prikazana dva meseca, se območje premakne za dva meseca itd.
+
+  <h3> Filtri </h3>
+  Različni filtri omogočajo oblikovanje prikaza tako, da so prikazana samo želena opravila.
+  <br> Iščete lahko po <b> uporabniku</b>, <b> projektu</b>, <b> statusu opravila</b>, <b> statusu projekta</b>, <b> lokaciji </b> ali <b> filter virov </b>.
+  <br> Za vsak filter je na voljo več možnosti izbire. Ko je filter aktiven, je njegov gumb prikazan rdeče. Prikazana so le opravila, ki ustrezajo kriterijem za izbor.
+  <br> Filter lahko kadar koli izklopite. Kliknite gumb aktivnega filtra in nato gumb <i>Deaktiviraj filter</i>.
+
+  <h3> Druge nastavitve zaslona </h3>
+  Načrtovanje lahko <b>razvrstite</b>: Če je PRIKAZ nastavljen "po uporabniku", po imenu ali ID-ju uporabnika, če je PRIKAZ nastavljen "po projektu", po projektu ali ID-ju projekta.
+  <br>
+  Možno je tudi združevanje uporabnikov po skupinah ali projektnih skupinah za projekte.
+  <br><br>
+
+	<b> (+) Razširjen pogled / (-) Kompakten pogled</b> (gumb s povečevalnim steklom): SOPlanning v osnovni nastavitvi prikaže naloge v strnjenem pogledu, samo z ID-jem uporabnika ali projekta. Razširjen pogled razširi celice opravil in prikaže dodatne informacije: začetni čas, trajanje, skupni čas dodeljenega uporabnika in izkoriščenost uporabnika (100 %, če je uporabniški čas dosegel dnevni delovni čas uporabnika. Na primer, če uporabnik opravi nalogo s 5h in ima eno s 3 urami, 100% se prikaže, če je v nastavitvah aktiviran dnevni delovni čas 8 ur.
+  <br><br>
+  Dodatni navigacijski pripomočki so na voljo preko gumba z dvema trikotnikoma:
+  <br> Z <b>drsnim trakom tudi na vrhu</b> se drsni trak prikaže nad prikazom načrtovanja. To je uporabno, če je seznam projektov ali uporabnikov zelo dolg.
+  <br> Možnost <b>Navigacijske puščice </b> prikazuje puščice na levi in ​​desni strani načrta, s katerimi lahko skočite naprej ali nazaj v času.
+  <br> Možnost <b> Popravi naslov stolpca </b> vedno ohranja prve vrstice s časom kot naslov na zaslonu, tudi če se pomaknete nižje.
+
+
+	<h3> Delo v pogledu načrtovanja </h3>
+  Načrtovanje je preprosto in intuitivno. V uporabniškem pogledu celice predstavljajo naloge in prikazujejo ID-je ustreznih projektov. V pogledu projekta so ID-ji uporabnikov namesto tega prikazani v celicah opravil.
+  <br>
+  Če kazalec miške premaknete nad opravilno celico, se vse informacije o opravilu prikažejo v pojavnem oknu. S klikom na celico se odpre okno, v katerem lahko spreminjamo vse podatke naloge.
+  <br>
+  Naloge, projekti in uporabniki, ki so prikazani, so odvisni od dovoljenj prijavljenega uporabnika, ki so nastavljena v <a href="utilisateurs.php"> upravljanju uporabnikov </a>.
+  <br>
+  S klikom na prazno oznako ali neposredno pod obstoječo nalogo se odpre obrazec za vnos nalog. Projekt, uporabnik in datum so vnaprej izbrani. Nalogo lahko ustvarite tudi z menijsko točko "Dodaj nalogo" v "Načrtovanju" ali z uporabo gumba "Dodaj nalogo".
+  <br>
+  V vnosni maski je <b>obveznih le nekaj informacij</b>: projekt, dodeljeni uporabnik, začetni datum in trajanje.
+  <br>
+  Vsa druga polja služijo za dodatno informiranje vaših projektov.
+  <br>
+  Eni nalogi lahko dodelite več oseb. V tem primeru se opravilo večkrat kopira in vsaka kopija je dodeljena drugi osebi. Kopije opravil so nato<b>neodvisne</b>.
+  <br><br>
+  <b>Trajanje opravila </b> je mogoče določiti na naslednji način: s končnim datumom (npr. več zaporednih dni), trajanjem v urah/ minutah, začetnim in končnim časom ali z izbiro » zjutraj ali popoldan«. Te 4 možnosti omogočajo prilagodljivo mikro ali makro upravljanje nalog in projektov. Večdnevne naloge lahko kombinirate z nekajurnimi. SOPlanning bo poskrbel za najboljšo predstavitev.
+  <br><br>
+  Funkcija <b>Ponavljanje</b> vam omogoča ustvarjanje redno ponavljajočih se opravil: dnevno, tedensko, mesečno. Na voljo so različne možnosti: ponovitev vsakih x dni, končni datum ponovitve, nastavitve, če ponovitev pade na dela prost dan (prestavi na naslednji dan, preskoči ali vseeno nastavi).
+  <br><br>
+  <B>Stanje </b> omogoča uporabo filtrov v prikazu načrtovanja. Stanje »končano« povzroči, da je ID v opravilnih celicah prečrtan.
+  <br><br>
+  Pomen <b>mejnika</b> ustreza tistemu v gantogramu: naloga s to lastnostjo označuje pomembno točko v času in je v načrtovanju predstavljena z ustreznim piktogramom v celici.
+  <br><br>
+  <B>Lokacije in viri</b> so izbirni moduli, ki jih je mogoče uporabiti za dodeljevanje značilnosti opravilom, ki niso uporabniki in projekti. To omogoča razporeditev prostorov, opreme, vozil itd.
+  <br><br>
+  <B>Obveščanje po e-pošti </b> je privzeto aktivirano. Pozor: E-poštno sporočilo bo poslano le, če je ta možnost označena in je dodeljeni uporabnik v svoj profil vnesel veljaven e-poštni naslov in se strinjal s prejemanjem obvestil.
+  <br><br>
+  Več uporabnikov lahko spreminja nalogo v načrtovanju hkrati. Podatke shrani uporabnik, ki je nazadnje kliknil »shrani«.
+
+
+	<h3>Izvozi module</h3>
+  Na voljo so različni izvozni formati.
+  Če ne najdete ustrezne izvozne različice, jo lahko razvije ekipa SOPlanning. <a href="https://www.soplanning.org" target="_blank">Pišite nam</a>.
+  <br>
+  Načrt je mogoče izvoziti v naslednjih formatih:
+  <Ul>
+  <li>.CSV (lahko se odpre z EXCEL) </ li>
+  <li>.XLS (datoteka EXCEL) z oblikovanjem blizu zaslona </ li>
+  <li>.PDF (trenutna stran, kot je prikazana) </ li>
+  <li> kot gantogram (kot grafika v brskalniku, za vodenje projektov z mejniki) </ li>
+  <li> ICal (.ics) za sinhronizacijo z Outlookom ali Gmailom, tako da so vsa opravila neposredno v osebnem koledarju </ li>
+  <li> Koledar: letni koledar kot datoteka .pdf </ li>
+  </Ul>
+
+  <h3>Tabelarni povzetek </h3>
+  Prikaz tabele pod načrtovalnim pogledom ni obvezen. Izklopite ga lahko v meniju <b>DISPLAY</b>.
+  <br>
+  Podroben seznam opravil vsebuje tudi podatke o skupni količini in zasedenosti posamezne linije (uporabniške ali projektne, odvisno od predstavitve).
+  <br>
+  Naloge lahko spremenite s klikom na to tabelo.
+"""
+
+ressources_titre = "Naročila/viri"
+
+ressources_contenu = """
+	Viri so dodatne funkcije, ki jih je mogoče dodeliti opravilom.
+  <br>
+  Ta modul je neobvezen in ga lahko kadar koli aktivirate ali deaktivirate v nastavitvah.
+  <br>
+  Ko je modul aktiviran, se v obrazcu opravila pojavi izbirni meni s seznamom razpoložljivih virov. Ta seznam lahko urejate v <a href="../ressources.php"> Nastavitve/Viri </a>.
+  <br><br>
+  Vnos vira v upravljanje opravil ni obvezen. Opravilu vam ni treba dodeliti vira, tudi če je bil modul aktiviran.
+  <br><br>
+  Za vsak vir lahko določite, ali je <b>ekskluziven</b> ali ne. Če nalogi dodelite izključni vir, tega vira ne morete več dodeliti nobeni drugi nalogi v istem časovnem obdobju. Vir brez ekskluzivnosti je mogoče dodeliti poljubnemu številu nalog hkrati.
+  <br><br>
+  Vir, dodeljen nalogi, lahko kadar koli prekličete izbor. Samo priklicati morate nalogo za obdelavo in jo ustrezno spremeniti.
+"""
+
+users_titre = "Upravljanje uporabnikov"
+
+users_contenu = """
+	Uporabniki so osebe, ki jim je pri načrtovanju dodeljena naloga, pa tudi osebe, ki se lahko tukaj prijavijo.
+  <br>
+  Ustvarite lahko poljubno število uporabnikov. Vsak uporabnik ima svoja dovoljenja.
+  <br>
+  Naloga je vedno povezana s projektom in uporabnikom. Pred ustvarjanjem opravila se prepričajte, da je želeni uporabnik že nastavljen.
+
+  <h3> Uporabniški profil </h3>
+  Vsak uporabnik lahko ureja svoj profil s klikom na svoje ime v meniju zgoraj desno. Tu lahko spremenite elektronski naslov in geslo, aktivirate funkcijo obveščanja in izberete osnovne nastavitve prikaza. Druge nastavitve lahko spreminjajo samo uporabniki z dovoljenjem za spreminjanje uporabniških podatkov.
+
+  <h3> Skrbniški uporabniški račun </h3>
+  Uporabnik "admin", ki obstaja privzeto, ni obvezen. Ta uporabniški račun ni edini, ki ima lahko vsa dovoljenja. Ustvarite lahko druge uporabnike in vsakemu dodelite vse pravice, ki jih želite. Uporabnika "admin" lahko nato izbrišete. Tako se lahko izognete enemu samemu uporabniku, ki ima vsa dovoljenja.
+
+  <h3> Seznam uporabnikov </h3>
+  Seznam uporabnikov prikazuje vse registrirane uporabnike. Tukaj lahko nastavite, spremenite ali izbrišete uporabnike in si ogledate osnovne podatke o uporabniških računih.
+  <br>
+  Seznam lahko razvrstite s klikom na naslov stolpca in filtrirate glede na članstvo v skupini ali iskalni izraz.
+  <br>
+  <b>Pozor</b>: Če izbrišete uporabnika, bodo izbrisana tudi vsa opravila uporabnika!
+
+  <h3> Glavne lastnosti uporabnika </h3>
+  ID je niz, ki je edinstven za vsakega uporabnika. Izpiše se v celicah opravil v načrtovanju. Izbrati je treba preprost ID, ki identificira zadevno osebo (npr. začetnice, osebna številka itd.). ID-ja pozneje ni mogoče spremeniti.
+  <br>
+  Polje »Ime« je edini drug vnos, potreben za ustvarjanje uporabnika. To ime je prikazano v tabeli pod načrtom.
+  <br>
+  Polje "e-poštni naslov" ni obvezno in se uporablja samo, če je aktivirana funkcija obveščanja (glejte spodaj).
+  <br>
+  Polji »Prijava« in »Geslo« sta prav tako izbirni in ju je treba uporabiti le, če bi se uporabnik moral prijaviti. Podatki za dostop so individualni za vsakega uporabnika. Uporabljajte samo močna gesla (vsaj 8 znakov).
+
+  <H3>Ekipa </h3>
+  Uporabnik je lahko dodeljen točno eni ekipi. To podeduje dovoljenja te ekipe. Glejte tudi pomoč za <a href="equipes.php">Ekipe</a>. Seznam ekip lahko urejate v uporabniškem podmeniju <a href="../user_groupes.php">Ekipe</a>.
+
+  <h3> Dovoljenja </h3>
+  <b>Uporabnik</b>: Nastavi dovoljenje za spreminjanje vseh možnih uporabniških podatkov. Ni razdelitve na posamezne uporabniške podatke. Glejte tudi <a href="../user_list.php">Upravljanje uporabnikov</a>.
+  <br><br>
+  <b>Projekti</b>: Nastavi dovoljenje za spreminjanje vseh možnih lastnosti projekta. To ne vključuje dovoljenj za naloge, dodeljene projektom. Ni delitve na dele projektov. Glejte tudi <a href="../projets.php">Upravljanje projektov</a>.
+  <br><br>
+  <b>Projektne skupine</b>: Nastavite projektne skupine, ki jim lahko dodelite projekte. Izvede se v podmeniju projektov <a href="../groupe_list.php"> skupine projektov</a>.
+  <br><br>
+	<b>Načrtovanje sprememb</b>: Določa, kaj lahko uporabnik spremeni v načrtovanju. To ne velja nujno le za izbiro vidnih nalog.
+  <br> <I>Dostop samo za branje</i> sploh ne dovoljuje &sprememb.
+  <br> Z možnostjo <i> samo projekti uporabnika</i> lahko urejate samo projekte, ki jim je bil uporabnik dodeljen kot lastnik v upravljanju projektov (glejte <a href = "../projets.php "> Projekti < /a>).
+  <br> Možnost <i> Naloge, ki so jim dodeljene temu uporabniku</i> vam omogoča spreminjanje nalog iz lastnih projektov in nalog, dodeljenih drugim projektom.
+  <br> Končno možnost <i> za vse projekte</i> omogoča spremembe vseh nalog vseh prikazanih projektov.
+  <br><br>
+
+  <b> Vidni projekti</b>: Z možnostjo <i> vsi projekti </i> uporabnik vidi vse obstoječe projekte (če nobenega ni skril skozi filtre).
+  <br> Z možnostjo <i>Samo timski projekti</i> so prikazani samo projekti, ki pripadajo vsaj enemu uporabniku iste ekipe. Seznama posameznih projektov ni mogoče določiti. Vsakemu novemu projektu dodajte vsaj eno nalogo, da lahko vsi v isti ekipi delajo na projektu.
+  <br> Možnost <i> Samo projekti uporabnika ali projekti, ki so mu dodeljeni</i> omogoča prikaz vseh nalog projektov uporabnika in nalog, ki so mu dodeljene.
+  <br> Možnost <i> Samo naloge tega uporabnika </i> omeji prikaz na opravila tega uporabnika.
+  <br><br>
+  <b>Vidni uporabniki</b>: V pogledu načrtovanja so lahko prikazani <i>Vsi uporabniki </i> ali samo določeni uporabniki. Možnost <i>Seznam uporabnikov</I> odpre izbirni filter. Tukaj navedene omejitve vplivajo samo na pogled načrtovanja. Uporabniki z dovoljenjem za spreminjanje uporabniških pravic lahko vidijo tudi vse druge uporabnike v upravljanju uporabnikov.
+  <br><br>
+  <b> Mesta</b>: Dovoljenje za upravljanje vseh mest v podmeniju <a href="../lieux.php"> Mesta </a> v nastavitvah. To dovoljenje velja le, če je v nastavitvah aktiviran izbirni modul Mesta.
+  <br><br>
+  <b> Viri</b>: Omogoča upravljanje virov v podmeniju <a href="../ressources.php"> Viri </a> v nastavitvah. To dovoljenje velja le, če je v nastavitvah aktiviran izbirni modul virov.
+  <br><br>
+  <b>Nastavitve</b>: Omogoča dostop do vseh parametrov SOPlanning.
+  <br><br>
+  <b>Statistika</b>: Omogoča prikaz statističnih podatkov v diagramih. Ti podatki niso omejeni z drugimi uporabniškimi dovoljenji.
+
+  <h3> Prilagajanje in obvestila </h3>
+  Uporabnik je lahko <i>viden </i> ali neviden v načrtovanju. Nevidni uporabnik se lahko še vedno prijavi in ​​dela pri načrtovanju, vendar mu ni mogoče dodeliti nobenih nalog.
+  <br>
+  <i>E-poštna obvestila</i> lahko aktivirate. V tem primeru bo uporabnik prejel e-poštno sporočilo vsakič, ko mu bo dodeljeno opravilo ali bo eno od njegovih opravil spremenjeno ali izbrisano.
+  <br>
+  Za uporabnika lahko izberete tudi <i>barvo</i>. Ta barva omogoča vizualno razlikovanje uporabnikov (levi stolpec) v načrtovalnem pogledu. Če vsem uporabnikom daste različne barve, lahko dobite lažji pregled nad opravili uporabnikov, ne da bi morali dostopati do podrobnosti opravil.
+
+  <h3> Osebni podatki </h3>
+  Ta polja so neobvezna in omogočajo shranjevanje dodatnih informacij o vsakem uporabniku. Te informacije so dostopne samo uporabnikom z dovoljenji za upravljanje uporabnikov in niso prikazane v urniku.
+"""
+
+equipes_titre = "Ekipe"
+
+equipes_contenu = """
+	Projekte je mogoče združiti v skupine z uporabo skupin.
+  <br>
+  Ekipe lahko v določenih primerih vplivajo na pravice uporabnikov, glejte <a href="../aide/utilisateurs.php">Dovoljenja</a>.
+  <br>
+  Ekipe izboljšajo pregled pri upravljanju uporabnikov (lahko filtrirate po ekipah) in pri načrtovanju (združevanje v skupine v funkciji "Razvrsti").
+  <br>
+  Ekipe lahko ustvarite, spremenite ali izbrišete v podmeniju <a href="../user_groupes.php">Ekipa</a> upravljanja uporabnikov.
+"""
+
+projets_titre = "Projekti/Naprave"
+
+projets_contenu = """
+	Naloga je vedno povezana s projektom in uporabnikom. Pred ustvarjanjem naloge se prepričajte, da ustrezen projekt že obstaja.
+  <br>
+  Ustvarite lahko poljubno število projektov. Kadar koli jih lahko spremenite ali izbrišete.
+
+  <h3> Seznam projektov </h3>
+  V osnovni nastavitvi so prikazani samo <i>aktivni projekti</i>. Izbira statusa velja samo za seznam in ne vpliva na prikaz načrtovanja.
+  <br>
+  Seznam projektov je mogoče filtrirati tudi po datumu, skupini projektov ali iskalni besedi v naslovu projekta. Razvrščanje lahko na koncu izvedete tudi s klikom na naslov stolpca.
+  <br>
+  Seznam se začne s projekti, ki ne spadajo v skupino, nato pa sledijo drugi projekti, razvrščeni po skupinah.
+  <br>
+  <b>Pozor:</b> Če je projekt izbrisan, bodo izbrisana tudi vsa opravila v tem projektu!
+
+  <h3> Informacije o projektu </h3>
+  <i>ID</i> je niz znakov, ki je edinstven za vsak projekt. Ta ID je prikazan v celicah v načrtovanju.
+  <br>
+  <i>Ime projekta</i> je edina druga informacija, ki je potrebna za ustvarjanje projekta.
+  <br>
+  Ustvarite lahko <i>skupino projektov</i> za združevanje projektov na seznamu projektov ali načrtovanju.
+  <br>
+  <i>Stanje </i> omogoča tudi razvrščanje projektov. Privzeto so zapuščeni in arhivirani projekti skriti.
+  <br>
+  <i>Uporaba</i>, <i>datum dostave</i>, <i>povezava</i> in <i/>komentar</i> so dodatne informacije, ki nimajo nadaljnjega vpliva na načrtovanje lahko uporabimo za opis projekta.
+  <br>
+  <i>Barva</i> projekta je barva ozadja opravil v pogledu projekta. Za optimalen pregled izberite ustrezne barve za različne projekte.
+"""
+
+groupes_titre = "Projektne skupine"
+
+groupes_contenu = """
+	Projektne skupine lahko vizualno povzemajo projekte. Nimajo vpliva na uporabniška dovoljenja.
+  <br>
+  Projektne skupine izboljšajo pregled pri vodenju projektov (navedeno po skupinah) in pri načrtovanju (možnost v meniju "Razvrsti").
+  <br>
+  Funkcija <a href="../groupe_list.php">Projektne skupine</a> vam omogoča poljubno ustvarjanje, spreminjanje ali brisanje projektnih skupin.
+"""
+
+faq_titre = "FAQ"
+
+faq_contenu = """
+	<b> Ali lahko ustvarim nalogo, ne da bi dodelil osebo? </b>
+  <br>
+  Ne, načelo SOPlanning temelji na dodelitvi osebe projektu prek naloge ob določenem času.
+  <br><br>
+
+  <b> Kako ravnate z dopustom ali odsotnostjo v SOPlanningu? </b>
+  <br>
+  SOPlanning ne more predstavljati vseh kompleksnih pravil o počitnicah; pravila so drugačna v vsaki državi in ​​v vsaki organizaciji.
+  <br> Najlažje je ustvariti projekt z imenom "odsoten" in ustrezno barvo ter nato ustvariti naloge, ki predstavljajo čase odsotnosti. To pomeni, da lahko neposredno v pogledu načrtovanja vidite, kateri uporabniki ob ustreznem času niso tam.
+  <br><br>
+
+  <b>Ne prejemam e-poštnih obvestil. Zakaj? </b>
+  <br>
+  <ul>
+  <li> Desno zgoraj kliknite svoje uporabniško ime in preverite, ali je vaš e-poštni naslov pravilno vpisan v uporabniškem profilu. </li>
+  <li> Preverite, ali imate omogočeno prejemanje obvestil. </li>
+  <li> V nastavitvah SOPlanning preverite, ali so parametri SMTP za pošiljanje e-pošte pravilni (uporabite testno funkcijo, da zagotovite, da pošiljanje e-pošte deluje) </ li>
+  <li> Preverite, ali je ustvarjalec opravil aktiviral možnost »Obvesti [x] po e-pošti«. </li>
+  <li> OPOMBA: Če ustvarite nalogo zase, ne boste prejeli e-pošte! </li>
+  </ul>
+  <br>
+
+  <b> Ali je lahko uporabnik dodeljen več ekipam? </b>
+  <br>
+  Ne, trenutno lahko SOPlanning dodeli uporabnika samo eni ekipi. To omogoča enostavno upravljanje uporabniških dovoljenj. Pišite nam, če želite lastna posebna dovoljenja.
+  <br><br>
+
+  <b> Kako konfigurirate počitnice? </b>
+  <br>
+  Pojdite na <a href="../feries.php"> Nastavitve/Prazniki </a>. Praznike za posamezne države lahko uvozite samodejno ali pa jih vnesete posamično. Ob praznikih se v prikazu načrtovanja pojavi celica z ID "FT".
+
+"""
+
+lieux_titre = "Mesta"
+
+lieux_contenu = """
+	Lokacije so dodatne značilnosti, ki jih je mogoče dodeliti nalogam. <br>
+  Ta modul je neobvezen in ga lahko kadar koli aktivirate ali deaktivirate v nastavitvah.
+  <br>
+  Ko je modul aktiviran, se v naročilnici prikaže izbirni seznam s prostimi lokacijami. Seznam krajev lahko urejate v podmeniju <a href="../lieux.php">Mesta</a> v nastavitvah.
+  <br>
+  Izbira lokacije pri ustvarjanju opravila ni obvezna, lokacije ni treba izbrati, tudi če je modul aktiviran.
+  <br><br>
+  Za vsako lokacijo lahko določite, ali je <b>ekskluzivna</b>. Če je lokacija ekskluzivna, za isto lokacijo ni mogoče ustvariti nobenih dodatnih nalog hkrati. Če lokacija ni ekskluzivna, jo je mogoče dodeliti poljubnemu številu nalog.
+  <br><br>
+  Če je bila nalogi dodeljena lokacija, jo lahko odstranite tako, da znova uredite nalogo.
+"""
+
+faq_roi = "Obvladovanje stroškov projekta / dobičkonosnost"
+roi_contenu = """
+	Izračun dobičkonosnosti vam omogoča, da poznate porabo/ostanek pri projektih v primerjavi z začetnim proračunom, ne glede na skupno število ur ali načrtovani proračun.
+  <br><br>
+  Da bi kar najbolje izkoristili te informacije o dobičkonosnosti, naredite naslednje:
+  <br>
+  <ul>
+  <li>Vnesite privzeto urno postavko v datoteko vsakega zaposlenega (zavihek »Konfiguracija«)</li>
+  <li>V projektni datoteki navedite načrtovane/začetne proračune v znesku in urah</li>
+  <li>Spremenite (po potrebi) projektni list, da navedete urne postavke, specifične za ta projekt. V nasprotnem primeru bo veljala privzeta stopnja zaposlenega</li>
+  <li>Dodelite naloge projektom in sodelavcem</li>
+  <li>Omogočite pooblaščenim ljudem dostop do modula Statistika/ROI na projektih (dodana nova pravica)</li>
+  <li>Oglejte si številke v modulu ROI projekta: orodje izračuna porabljen proračun (v znesku in urah), preostali proračun in donosnost</li>
+	</ul>
+"""

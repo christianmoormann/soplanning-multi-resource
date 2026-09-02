@@ -1,0 +1,70 @@
+{* Smarty *}
+{include file="www_header.tpl"}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="soplanning-box">
+				<div class="btn-group">
+					<a href="{$BASE}/options" class="btn btn-default" ><i class="fa fa-cogs fa-lg fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;{#menuOptions#}</a>
+					<a href="javascript:xajax_modifFerie();void(0);" class="btn btn-default" ><i class="fa fa-plane fa-lg fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;{#menuCreerFerie#}</a>
+					<div class="btn-group" id="dropdownExport">
+						<button class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-display="static"><i class="fa fa-upload fa-lg fa-fw" aria-hidden="true"></i><span class="d-none d-md-inline-block">&nbsp;&nbsp;{#feries_import#}</span>&nbsp;<span class="caret"></span></button>
+						<div class="dropdown-menu" style="">
+							{foreach from=$fichiers item=fichier}
+								<a class="dropdown-item" onClick="event.cancelBubble=true;" href="javascript:if(confirm('{#feries_confirmImport#}')){literal}{{/literal}document.location='process/feries?fichier={$fichier|basename}'{literal}}{/literal}">{$fichier|basename}</a>
+							{/foreach}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="soplanning-box mt-2">
+				{if $feries|@count > 0}
+					<table class="table table-striped table-hover" id="FeriesTab">
+						<tbody>
+						<tr>
+							<th class="w100">&nbsp;</th>
+							<th class="w100">
+								<b><a href="?changeOrderDate=1">{#feries_date#}<a></b>
+							</th>
+							<th>
+								<b>{#feries_libelle#}</b>
+							</th>
+							<th class="text-center">
+								<b>{#feries_couleurfond#}</b>
+							</th>
+						</tr>
+						{foreach name=feries item=ferie from=$feries}
+							<tr>
+								<td class="w100">
+									<a href="javascript:xajax_modifFerie('{$ferie.date_ferie|urlencode}');void(0);"><i class="fa fa-pencil fa-lg fa-fw" aria-hidden="true"></i></a>
+									<a href="javascript:xajax_supprimerFerie('{$ferie.date_ferie|urlencode}');void(0);" onClick="javascript:return confirm('{#confirm#|escape:"javascript"}')"><i class="fa fa-trash-o fa-lg fa-fw" aria-hidden="true"></i></a>
+								</td>
+								<td class="w100">
+									{$ferie.date_ferie|sqldate2userdate}&nbsp;
+								</td>
+								<td>
+									{$ferie.libelle|xss_protect}
+								</td>
+								<td>
+									{if $ferie.couleur eq ''}
+									<div class="pastille-statut mr-auto ml-auto feries"></div>
+									{else}
+									<div class="pastille-statut mr-auto ml-auto" style="background-color:#{$ferie.couleur}"></div>
+									{/if}
+								</td>
+							</tr>
+						{/foreach}
+						</tbody>
+					</table>
+				{else}
+					{#info_noRecord#}
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+{include file="www_footer.tpl"}

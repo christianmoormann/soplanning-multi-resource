@@ -1,0 +1,314 @@
+
+aide_retour = "Ritorna al menu principale"
+
+index_contenu = """
+	<b>SOMMARIO AIUTO</b>
+	<br><br>
+	SOPlanning è facile da usare: pianifichi attività associando una persona con un progetto.
+	<br>
+	Quando viene compresa questa regola, SOPlanning offre differenti possibilità di pianificare e gestire progetti, persone, risorse e luoghi con una visualizzazione chiara.
+	<br><br>
+	Trova sotto tutte le caratteristiche di SOPlanning.
+	<br>
+	Libero di contattare il <a target="_blank" href="http://www.soplanning.org"> supporto tecnico</a> o di consultare il  <a href = "http://forum.soplanning.org target="_ blank">forum</a> per ogni domanda.
+"""
+
+planning_titre = "Vista pianificazione"
+
+planning_contenu = """
+	<h3> Le diverse modalità di visualizzazione </h3>
+	Nel menu “Visualizza” trovi tutte le visualizzazioni disponibili in SOPlanning:
+	<br>
+	<ul>
+		<li> <b> Pianificazione persone </b>: SOPlanning elenca le persone / utenti sulla sinistra, le attività sono disposte sulla linea di ogni persona. </ li>
+		<li> <b> Pianificazione progetti </b>: SOPlanning elenca i progetti sulla sinistra, le attività sono disposte sulla linea di ogni progetto. </ li>
+		<li> <b> Pianificazione luoghi </b>: Se questo modulo è attivato, SOPlanning elenca i luoghi sulla sinistra, le attività relative ai luoghi sono disposte sulla corrispondente linea. </ li>
+		<li> <b> Pianificazione risorse </b>: Se questo modulo è attivato, SOPlanning elenca le risorse sulla sinistra, le attività relative sono disposte sulla corrispondente linea. </ li>
+		<li> <b> Calendario persone </b>: Questa vista in modo calendario permette di visualizzare tutte le attività per ogni persona per uno specifico giorno. Il nome della persona è visualizzato in alto alla programmazione, le fasce orarie del giorno selezionato si trovano nella colonna di sinistra. </ Li>
+		<li> <b> Vista oraria </b>: Le colonne del programma sono le fasce orarie (1 colonna = 1 ora). Quindi puoi tenere traccia dei tuoi progetti ora per ora e visualizzare le attività che durano diverse ore. </ Li>
+		<li> <b> Vista giornaliera </b>: le colonne del programma sono i giorni, questa è la vista predefinita di SOPlanning.</ li>
+		<li> <b> Visualizza linee vuote </b>: per impostazione predefinita, SOPlanning visualizza tutte le righe (persone, progetti, ecc.) del programma. Se disabiliti questa opzione, SOPlanning mostrerà solo le righe contenenti almeno un'attività nel periodo selezionato. </ Li>
+		<li> <b> Visualizza linea con totale </b>: Visualizza una riga aggiuntiva sotto la pianificazione, contenente il numero totale di ogni colonna </ li>
+		<li> <b> Visualizza riassunto </b> - Visualizza una tabella di riepilogo di tutte le attività al di sotto del programma. Questa versione è più "testuale" e consente una lettura più dettagliata delle attività.  </ Li>
+	</ul>
+	Dopo aver effettuato una scelta in questo menu, è possibile passare da una vista all'altra senza ulteriori impostazioni.
+
+	<h3> Seleziona le date da visualizzare </h3>
+	La pianificazione viene visualizzata in base a una data di inizio e a una data di fine (ad eccezione della visualizzazione calendario, che viene visualizzata solo un giorno).
+	<br> È possibile scegliere il periodo di tempo da visualizzare nella pianificazione facendo clic sulle date in alto a sinistra.
+	<br> Il modulo consente quindi di scegliere la data di inizio, la data di fine o preselezionare una data con scorciatoie (oggi, la settimana scorsa, ecc.). Basta fare clic sul pulsante di convalida per modificare istantaneamente il periodo di tempo visualizzato.
+	<br> È inoltre possibile utilizzare i pulsanti a destra della scelta delle date (pulsanti con frecce avanti e indietro). Questi pulsanti consentono di spostare il programma in una direzione o nell'altra. Lo scostamento applicato corrisponde alla durata visualizzata: se si visualizzano 2 mesi, i pulsanti sposteranno la pianificazione di 2 mesi e così via.
+
+	<h3> Filtri </h3>
+	I diversi filtri presenti consentono di personalizzare la visualizzazione per visualizzare solo le attività che interessano.
+	<br> È possibile filtrare per <b> utente </b>, <b> progetto </b>, <b> stato attività </b>, <b> stato progetto </b>, by <b> luogo </b> or <b> risorsa </b>.
+	<br> Per ognuno di questi filtri è possibile controllare diverse scelte. Una volta applicato il filtro, diventa rosso per vedere rapidamente che un filtro è attivo. Verranno visualizzate solo le attività corrispondenti a queste scelte.
+	<br> È possibile rimuovere in qualsiasi momento un filtro facendo di nuovo clic sul filtro, quindi sul bottone <i> Annulla filtri </i>.
+
+	<h3> Altre opzioni di visualizzazione</h3>
+	È possibile <b> ordinare la pianificazione </b> in base alla scelta: ordinare in base al nome della persona o all'identificatore se la pianificazione viene visualizzata per persona oppure ordinare in base al nome del progetto o all'ID progetto se la pianificazione viene visualizzata per progetto.
+	<br>
+	È inoltre possibile visualizzare un livello aggiuntivo selezionando <i> Team </i> per la vista persona, o <i> Gruppo di progetti</i> per la vista progetti.
+	<br><br>
+
+	<b> Vista di dettaglio / Vista compatta</b>: Per impostazione predefinita SOPlanning visualizza una visualizzazione compatta delle attività, che mostra solo l'ID della persona o del progetto. La visualizzazione dettagliata espande la cella di un'attività per visualizzare informazioni aggiuntive (tutte le informazioni vengono visualizzate comunque nella panoramica dell'attività): ora di inizio dell'attività, durata dell'attività, tempo totale del giorno per la persona assegnata all'attività e misuratore "riempimento": indica 100% se il totale delle attività della persona il giorno corrisponde alle ore massime di lavoro disponibili. Esempio: una persona ha un compito di 5h e un altro di 3h, il misuratore indicherà 100% se sono state attivate 8 ore disponibili in SOPlanning.
+	<br><br>
+	È possibile personalizzare la navigazione nella pianificazione: attivando<b> Scorrimento in alto alla pianificazione </b>, si aggiunge una barra di scorrimento sopra il programma che sarà utile se si dispone di un lungo elenco di progetti / persone.
+	<br> L’opzione <b> Frecce di navigazione</b> aggiunge frecce su entrambi i lati della pianificazione, consentendo di navigare a destra o a sinistra della pianificazione da salti successivi.
+	<br> L’opzione <b> Intestazione mobile </b> consente di mantenere l'intestazione della pianificazione (date e giorni) anche quando si scorre la pagina verso il basso. Questo è più o meno il principio di blocco delle linee in Excel.
+
+
+	<h3> Modulo di pianificazione e gestione delle attività </h3>
+	La pianificazione è semplice e intuitiva. Nella vista persona, le celle di piccole dimensioni che rappresentano le attività indicano l'identificatore del progetto per l'attività. Al contrario, nella visualizzazione progetto, viene visualizzato l'ID utente assegnato all'attività.
+	<br>
+	Quando si passa il mouse su un'attività, è possibile visualizzare tutte le informazioni nell'attività. È sufficiente fare clic sulla cella di un'attività per modificarla.
+	<br>
+	L'elenco delle attività, dei progetti e delle persone visualizzate è direttamente correlato ai diritti della persona connessa. A seconda dei diritti ad esso assegnati nella<a href="utilisateurs.php"> gestione utenti</a>, la persona connessa vedrà più o meno informazioni.
+	<br>
+	Quando si fa clic su un giorno vuoto o sotto le attività esistenti, si passa direttamente al modulo di creazione dell'attività e il progetto o la persona è preselezionata, nonché la data. Puoi anche aggiungere un'attività direttamente dal menu nella parte superiore dello strumento "Pianificazione >> Aggiungi attività" o dal pulsante colorato "Aggiungi attività".
+	<br>
+	Nel <b> modulo attività solo pochi campi sono obbligatori</b>: il progetto, l'utente assegnato, la data di inizio e la durata.
+	<br>
+	Tutti gli altri campi sono lì per permetterti di andare oltre nella gestione dei tuoi progetti e offrirti più possibilità.
+	<br>
+	Per quanto riguarda la persona assegnata, è possibile un selezionare più persone durante la creazione dell'attività. L'attività immessa verrà quindi duplicata per ogni persona, <b> indipendentemente </b>.
+	<br><br>
+	La <b> durata di un'attività</b> può essere nel seguente formato: una data di fine (cioè diversi giorni di fila), o una durata in ore / minuti, o un'ora di inizio e di fine, o mattina o pomeriggio. Queste 4 possibilità offrono la flessibilità necessaria per coordinare attività e progetti di dimensioni diverse gestendo in modo micro o macro. È possibile combinare facilmente le attività di diversi giorni con attività di poche ore, SOPlanning visualizzerà il meglio in base ai dati.
+	<br><br>
+	La <b> ricorrenza </b> consente di pianificare un'attività a intervalli regolari: ogni giorno / settimane / mese, a seconda delle esigenze. Si può giocare con le diverse opzioni: ripetere ogni X giorni se si desidera essere in grado di distanziare le attività nel tempo, impostare una data di fine della ripetizione, e gestire il caso dei giorni non lavorati (per passare al giorno successivo, non aggiungere o aggiungere comunque).
+	<br><br>
+	<B> Stati </b> consente l'applicazione del filtro nella pianificazione. Alcuni stati, ad esempio lo stato "Completato", visualizzano l'attività come barrato nella pianificazione.
+	<br><br>
+	Il concetto di <b> termine </b> è vicino a un diagramma di Gantt: è un'attività che rappresenta una consegna in una data specificata. l'attività visualizza quindi un pittogramma adatto, che funge da segnale visivo.
+	<br><br>
+	<B> Luoghi e risorse </b> sono moduli opzionali per l'assegnazione di elementi diversi da persone e progetti. Ciò consente di gestire la prenotazione di luoghi / sale, attrezzature, veicoli, ecc.
+	<br><br>
+	<B> notifica e-mail </b> è abilitata per impostazione predefinita. Importante: l'e-mail verrà inviata solo se questa casella è selezionata, l'utente assegnato a un'e-mail valida inserita nel suo modulo e ha attivato l'opzione per ricevere notifiche da SOPlanning.
+	<br><br>
+	Diversi utenti possono facilmente accedere e modificare la pianificazione o la stessa attività allo stesso tempo: le informazioni salvate sono quella dell'ultima persona che ha convalidato il modulo.
+	<br><br>
+
+	<h3>Moduli di esportazione</h3>
+	Sono disponibili diversi tipi di esportazione.
+	Se non riesci a trovare l'esportazione desiderata, il team SOPlanning può sviluppare un su misura per te, per favore<a href="https://www.soplanning.org" target="_blank"> contattaci</a>.
+	<br>
+	È possibile esportare le informazioni di pianificazione nel formato:
+	<Ul>
+	<li> CSV (aperibile in Excel) </ li>
+	<li> come file Excel con formattazione vicina a quella della pianificazione</ li>
+	<li> in PDF (pagina corrente) </ li>
+	<li> in grafico Gantt (utilizzatoper la gestione dei progetti con attività cardine)</ li>
+	<li> Esportazione ICal, sincronizzare con outlook o Gmail in modo da poter visualizzare le attività direttamente nel calendario personale</ li>
+	<li> in modalità calendario: si tratta di una visualizzazione semplificata (formato calendario cartaceo) </ li>
+	</Ul><br>
+
+	<h3>Il riepilogo della pianificazione</h3>
+	Questa tabella di riepilogo è facoltativa, è possibile disabilitarla dal menu <b> Visualizzazione </b>. <br>
+	Permette una lettura più dettagliata delle diverse attività, indicando anche una nozione di totale e carico per ogni riga (persona o progetto in base alla vista). <br>
+	È possibile modificare le attività facendo clic sui diversi blocchi che descrivono le attività.
+"""
+
+ressources_titre = "Gestione delle risorse"
+
+ressources_contenu = """
+	Le risorse sono dati aggiuntivi che possono essere correlati alle attività.<br>
+	Questo modulo è opzionale e può essere attivato o disattivato in qualsiasi momento nelle opzioni SOPlanning.
+	<br>
+	Quando il modulo è attivo, viene visualizzato un menu a discesa di selezione nel modulo di gestione delle attività contenente l'elenco delle risorse disponibili. È possibile gestire questo elenco nell'interfaccia <a href="ressources.php"> gestione delle risorse</a>, tramite il menu "Impostazioni >> Risorse".
+	<br>
+	Questo campo è facoltativo nel modulo dell'attività, pertanto non è necessario scegliere una risorsa per ogni attività anche se il modulo è abilitato.
+	<br><br>
+	Per ogni risorsa è possibile definire se è esclusiva o meno. Se lo si rende esclusivo, non sarà possibile creare un'altra attività con la stessa risorsa contemporaneamente, SOPlanning vi dirà che c'è un conflitto. Se questa esclusività non è abilitata, è possibile assegnare questa risorsa tutte le volte che si desidera contemporaneamente.
+	<br><br>
+	Una volta assegnata una risorsa, è anche possibile eliminarla da un'attività in un secondo momento modificando di nuovo l'attività.
+"""
+
+users_titre = "Gestione utenti"
+
+users_contenu = """
+	Gli utenti rappresentano l'elenco delle persone visualizzate nello strumento, nonché le persone che possono connettersi allo strumento per visualizzare la pianificazione.
+	<br>
+	È possibile creare tutti gli utenti che si desidera, ognuno avrà diritti specifici.
+	<br>
+	Un'attività è sempre collegata a un progetto e a un utente. Prima di creare un'attività, assicurarsi che l'utente corrispondente sia già stato creato.
+	<br><br>
+	<h3> Il mio profilo</h3>
+	Ogni utente può modificare il proprio profilo facendo clic sul suo nome in alto a destra nella barra dei menu. Questa interfaccia gli permette di modificare la sua e-mail, la sua password, l'attivazione delle notifiche via e-mail, così come le sue preferenze di visualizzazione della pianificazione. Altre informazioni possono essere modificate solo da persone con diritti utente.
+	<br><br>
+
+	<h3> Account amministratore</h3>
+	L'utente "admin" esistente per impostazione predefinita nello strumento non è obbligatorio: questo account non è l'unico che può avere tutti i diritti, è possibile rimuoverlo in modo sicuro e creare tutti gli utenti con tutti i diritti che si desidera. In questo modo si evita di avere un singolo account in grado di eseguire tutte le operazioni.
+	<br><br>
+
+	<h3> Elenco di utenti</h3>
+	L'elenco degli utenti include tutte le persone registrate nello strumento. Questa interfaccia consente di creare / modificare / eliminare un utente, e visualizzare le informazioni di base di ogni account utente.
+	<br>
+	È possibile ordinare questo elenco facendo clic sui nomi delle colonne e filtrare l'elenco per team o per ricerca.
+	<br>
+	<b> Importante </b>: L'eliminazione di un utente comporta l'eliminazione di tutte le attività per tale utente.
+	<br><br>
+
+	<h3> Le principali informazioni di un utente</h3>
+	L'identificatore è una stringa di caratteri univoca per ogni utente. Questo identificatore è quello visualizzato nella pianificazione. L'obiettivo è quello di definire un identificatore che rappresenti facilmente la persona interessata (iniziali, numero di dipendente, ecc.). Questo identificatore non può essere modificato in un secondo momento.
+	<br>
+	Il campo "nome" è l'unico altro campo obbligatorio per la creazione di un utente, questo nome verrà visualizzato nel riepilogo completo sotto la pianificazione.
+	<br>
+	Il campo "email" è facoltativo e verrà utilizzato solo se si abilitano le notifiche e-mail (vedi sotto).
+	<br>
+	Anche "login" e "password" sono facoltativi e saranno necessari solo se si desidera dare accesso alla pianificazione all'utente interessato. Ogni login è unico. Immettere anche password sufficientemente complesse (8 caratteri, con diverse interruzioni).
+	<br><br>
+
+	<H3> Team </h3>
+	È possibile collegare un utente a un solo team. In questo modo verranno definiti i diritti relativi al team a cui appartiene. Vedi la Guida su<a href="equipes.php"> teams </a> per gestire l'elenco dei teams. Vedere il modulo <a href="../user_groupes.php"> Team Management </a> 
+	<br><br>
+
+	<h3> Definizione dei diritti</h3>
+	<b> Gestione utenti</b>: dà il diritto a tutte le possibili azioni sugli account utente. Non esiste alcun diritto intermedio di modificare parzialmente i conti. Vedi il modulo <a href="../user_list.php"> gestione utenti</a>.
+	<br><br>
+	<b> Gestione dei progetti</b>: dà il diritto a tutte le possibili azioni sul file di progetto. non concede alcun diritto sui compiti associati a questi progetti. Non esiste un diritto intermedio di modificare parzialmente i progetti. Vedi il modulo<a href="../projets.php"> gestione dei progetti</a>.
+	<br><br>
+	<b> Gestione dei gruppi di progetti</b>: Gestire i gruppi di progetti a cui è possibile associare i progetti. Vedi ilmodulo<a href="../groupe_list.php"> gestione dei gruppi di progetti</a>.
+	<br><br>
+	<b> Modifica pianificazione </b>: Questo diritto determina ciò che l'utente può modificare nella pianificazione, non è necessariamente l'insieme di attività che vede (vedi a destra sotto). <I> sola lettura</i> l'accesso non consente alcuna modifica. L'opzione<i> Solo per i progetti di sua proprietà </i> consente di modificare solo questi progetti se è stato definito come proprietario nel modulo di un progetto (vedere<a href = "../ projets.php "> gestione dei progetti</a>). L’opzione <i> attività a cui è assegnato o i propri progetti </i> consente di modificare le attività in cui è proprietario del progetto e le attività assegnate in altri progetti. Infine l'opzione<i> per tutti i progetti </i> gli permette di modificare tutti i compiti dei progetti che può vedere.
+	<br><br>
+
+	<b> Visualizzazione Pianificazione</b>: l’opzione <i> tutti i progetti </i> consente all'utente di visualizzare tutti i progetti presenti nello strumento (a meno che non abbia applicato volontariamente un filtro di pianificazione). L’opzione <i> Solo progetti team </i> consente di visualizzare solo i progetti coperti da almeno una persona nello stesso team dell'utente. Non è possibile definire un elenco specifico di progetti per questo diritto, basta aggiungere almeno un'attività su un nuovo progetto in modo che tutti gli utenti dello stesso team possano accedere a questo progetto. L’opzione <i> Solo i progetti di proprietà o assegnati</i> consente di visualizzare tutte le attività dei progetti di proprietà dell'utente, nonché le attività a cui è assegnato. L’opzione <i> Solo le attività ad esso assegnate</i> consente di limitare la visualizzazione solo alle proprie attività.
+	<br><br>
+	<b> Gestione luoghi</b>: dà il diritto a tutte le possibili azioni sull'elenco dei luoghi disponibili. Questo diritto si applica solo se questo modulo opzionale è abilitato nelle impostazioni SOPlanning. Vedi modulo<a href="../lieux.php"> gestione luoghi</a>.
+	<br><br>
+	<b> Gestione delle risorse</b> ti dà diritto a tutte le possibili azioni sulla lista delle risorse / materiali disponibili. Questo diritto si applica solo se questo modulo opzionale è abilitato nelle impostazioni SOPlanning. Vedi il modulo<a href="../ressources.php"> gestione delle risorse</a>.
+	<br><br>
+	<b> Gestione dei parametri</b>: consente di accedere alla modifica di tutte le impostazioni SOPlanning.
+	<br><br>
+	<b> Accesso statistiche</b>: fornisce l'accesso ai diversi moduli statistici disponibili. Le statistiche sono globali e non sono limitate ai diritti di visualizzazione della pianificazione definiti per l'utente.
+	<br><br>
+
+	<h3> Personalizzazione e notifiche</h3>
+	È possibile rendere l'utente<i> Visibile</i> o meno nella pianificazione. Questo non gli impedirà di essere in grado di connettersi e consultare la pianificazione, ma sarà impossibile assegnare compiti a lui.
+	<br>
+	È inoltre possibile determinare se l'utente riceverà<i> notifiche e-mail</i>. Gli verrà inviata un'e-mail per qualsiasi attività creata che gli verrà assegnata o per qualsiasi modifica o eliminazione di un'attività a lui assegnata.
+	<br>
+	si può inoltre impostare il<i> colore </i> dell'utente. Questo colore serve come un segnale visivo nella pianificazione (nella vista di persona). Se distribuisci i colori tra i tuoi diversi utenti, avrai una panoramica a colpo d'occhio del programma di ciascuno senza dover sorvolare ogni attività per vedere i dettagli.
+	<br><br>
+
+	<h3> Informazioni personali</h3>
+	Questi campi sono facoltativi e consentono di aggiungere informazioni aggiuntive su ogni utente. Queste informazioni non sono visibili nella pianificazione ed è accessibile solo agli utenti con diritti di gestione degli utenti.
+"""
+
+equipes_titre = "Gestione Teams"
+
+equipes_contenu = """
+	Teams possono raggruppare visivamente i progetti.
+	<br>
+	Teams possono avere un impatto sui diritti utente in alcuni casi, vedere<a href="user.php"> diritti utente</a>.
+	<br>
+	Questi team aiutano la visibilità nella gestione degli utenti (filtrare in base a un team possibile) e nella pianificazione (possibilità di raggruppare gli utenti per team nell'opzione "ordina per").
+	<br>
+	Il modulo di gestione del team consente di creare/modificare/eliminare team a volontà.
+"""
+
+projets_titre = "Gestione dei progetti"
+
+projets_contenu = """
+	Un'attività è sempre collegata a un progetto e a un utente. Prima di creare un'attività, assicurarsi che il progetto corrispondente sia già stato creato.
+	<br>
+	È possibile creare tutti i progetti desiderati. Naturalmente è possibile modificarli ed eliminarli.<br><br>
+
+	<h3> Elenco dei progetti</h3>
+	Per impostazione predefinita, solo<i> a </i> o <i> progetti in corso</i> vengono visualizzati. È possibile modificare questi criteri, si applicheranno solo in questa interfaccia e non in base alla pianificazione.
+	<br>
+	È inoltre possibile filtrare questo elenco di progetti per data, gruppo di progetti o eseguire una ricerca di testo sul titolo del progetto. È possibile ordinare l'elenco facendo clic sui nomi delle colonne.
+	<br>
+	Nell'elenco, i progetti sono raggruppati in base ai gruppi di progetti, i progetti senza gruppo sono all'inizio.
+	<br>
+	<b> Importante </b>: L'eliminazione di un progetto eliminerà tutte le attività da questo progetto<br><br>
+
+	<h3> Informazioni sul progetto</h3>
+	L’ <i> identificatore </i> è una stringa di caratteri, univoca per ogni progetto. Queste informazioni sono il segnale visivo visualizzato nell'abaco.
+	<br>
+	Il <i> nome del progetto</i> è l'unica altra informazione obbligatoria per la creazione di un progetto.
+	<br>
+	Se lo si desidera, è possibile impostare un <i> gruppo di progetti</i>, in modo da poterli facilmente raggruppare visivamente, nell'elenco dei progetti e nella programmazione.
+	<br>
+	Lo <i> stato </i> consente inoltre di ordinare i progetti. Per impostazione predefinita, i progetti abbandonati o archiviati sono nascosti.
+	<br>
+	Il <i> carico </i>, la <i> data di consegna</i>, il <i> link </i>, e i <i> commenti </i> sono semplici informazioni che consentono di aggiungere dettagli ai vostri progetti senza conseguenze sulla pianificazione.
+	<br>
+	Il <i> colore </i> del progetto è il colore di sfondo della cella per le attività (nella vista progetto). Scegli colori rappresentativi per ogni progetto per una migliore leggibilità.
+"""
+
+groupes_titre = "Gruppi di progetti"
+
+groupes_contenu = """
+	I gruppi possono raggruppare visivamente i progetti. I gruppi non hanno alcun impatto sui diritti utente.
+	<br>
+	Questi gruppi aiutano la visibilità nella gestione dei progetti (raggruppati per gruppo) e nella pianificazione (possibilità di raggruppare i progetti per gruppo nell'opzione "ordina per").
+	<br>
+	Il modulo di gestione dei gruppi consente di creare/modificare/eliminare gruppi a volontà.
+"""
+
+faq_titre = "FAQ"
+
+faq_contenu = """
+	<b> È possibile creare un'attività senza assegnare nessuno?</b>
+	<br>
+	No, il principio SOPlanning si basa sull'associazione di una persona e di un progetto, ad una attività in un determinato momento.
+	<br><br>
+
+	<b> Come gestire le festività o le assenze in SOPianificazione?</b>
+	<br>
+	SOPlanning non è progettato per gestire tutte le complesse regole di vacanza/festività, ogni paese e ogni realtà hanno le proprie regole.
+	<br> Il modo più efficace è quello di creare un progetto "Assenza" con un colore visibile, e per creare attività per rappresentare le vostre vacanze. Quindi, quando visualizzi il programma, vedrai facilmente le persone che hanno già assegnato il congedo nei giorni interessati.
+	<br><br>
+
+	<b> Non ricevo notifiche e-mail. Cosa sta succedendo?</b>
+	<br>
+	<ul>
+		<li> Verifica che la tua email sia correttamente inserita nel tuo profilo, cliccando sul tuo nome in alto a destra di SOPlanning</ li>
+		<li> Controllare in questa finestra che è stata attivata la ricezione delle notifiche </ li>
+		<li> Controllare nelle impostazioni di SOPlanning di aver immesso correttamente i parametri SMTP per l'invio di e-mail (utilizzare lo strumento di test per convalidare il corretto funzionamento) </ li>
+		<li> Verificare che la persona che crea l'attività abbia selezionato "Notifica tramite e-mail"</ li>
+		<li> Attenzione: se ti assegni un compito, non riceverai un'e-mail! </ li>
+	</ul>
+	<br>
+
+	<b> Posso inserire un utente in più team?</b>
+	<br>
+	No, attualmente SOPlanning può collegare una persona a un singolo team, per rimanere semplice nella gestione dei diritti. Contattaci se desideri impostare diritti personalizzati.
+	<br><br>
+
+	<b> Come gestire le festività?</b>
+	<br>
+	Usa il modulo <a href="../feries.php"> Gestione festività</a>. È possibile eseguire un'importazione automatica o cogliervi in giorni specifici. Una casella simile a un'attività verrà visualizzata nella pianificazione con la parola "OFF".
+"""
+
+lieux_titre = "Gestione dei luoghi"
+
+lieux_contenu = """
+	I luoghi sono dati aggiuntivi che possono essere correlati alle attività.<br>
+	Questo modulo è opzionale e può essere attivato o disattivato in qualsiasi momento nelle opzioni SOPlanning.
+	<br>
+	Quando il modulo è attivo, viene visualizzato un menu a discesa di selezione nel modulo di gestione delle attività contenente l'elenco delle posizioni disponibili. È possibile gestire questo elenco nell’interfaccia <a href="lieux.php"> gestione luoghi</a>, tramite ilmenu "Impostazioni >> Luoghi".
+	<br>
+	Questo campo è facoltativo nel modulo dell'attività, pertanto non è necessario scegliere un luogo per ogni attività anche se il modulo è abilitato.
+	<br><br>
+	Per ogni luogo è possibile definire se è esclusivo o meno. Se lo rendi esclusivo, non sarai in grado di creare un'altra attività per lo stesso luogo allo stesso tempo, SOPlanning ti dirà che c'è un conflitto. Se questa esclusività non è attivata, è possibile assegnare questo luogo tutte le volte che si desidera allo stesso tempo.
+	<br><br>
+	Una volta assegnato, è anche possibile eliminarlo da un'attività in un secondo momento modificando nuovamente l'attività.
+"""
+
+faq_roi = "Project cost management / profitability"
+roi_contenu = """
+	The profitability calculation allows you to know the consumed/remaining amount on projects compared to the initial budget, whether on the total hours or the planned budget.
+	<br><br>
+	In order to make the best use of this profitability information, here is what to do:
+	<br>
+	<ul>
+		<li>Enter a default hourly rate in each employee form ("Configuration" tab)</li>
+		<li>Indicate in the project file the planned/initial budget for amount and hours</li>
+		<li>Modify (if necessary) the project form to indicate specific hourly rates for this project. Otherwise the employee's default rate will apply</li>
+		<li>Assign tasks to projects and collaborators</li>
+		<li>Give authorized people access to the Statistics / ROI module on projects (new right added)</li>
+		<li>Consult the figures in the project ROI module: the tool calculates the budget consumed (amount and hours), the remaining budget, and profitability</li>
+	</ul>
+"""

@@ -55,9 +55,15 @@ class Ressource extends GObject
 		$periodes = new GCollection('Periode');
 		$periodes->db_load(array('ressource_id', '=', $this->ressource_id));
 		while($periode = $periodes->fetch()){
-			$periode->ressource_id = NULL;
+			// keep the primary pointer valid: fall back to another resource still on the task
+			$autres = array();
+			$res = db_query("SELECT ressource_id FROM planning_periode_ressource WHERE periode_id = " . val2sql($periode->periode_id) . " AND ressource_id <> " . val2sql($this->ressource_id) . " ORDER BY ressource_id");
+			while ($row = db_fetch_array($res)) { $autres[] = $row['ressource_id']; }
+			$periode->ressource_id = (count($autres) > 0) ? $autres[0] : NULL;
 			$periode->db_save();
 		}
+		// drop junction rows for this resource (redundant with the FK cascade, safe without it)
+		db_query("DELETE FROM planning_periode_ressource WHERE ressource_id = " . val2sql($this->ressource_id));
 		$return = parent::db_delete();
 		return $return;
 	}

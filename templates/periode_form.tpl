@@ -387,6 +387,16 @@
 			</div>
 	{/if}
 	{if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES == 1 }
+		{if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE == 1}
+		<div class="col-md-2 col-form-label">{#winPeriode_ressources#} :</div>
+			<div class="col-md-4">
+				<select name="ressource[]" id="ressource" multiple="multiple" class="form-control {if $smarty.session.isMobileOrTablet!=1}select2{/if}" tabindex="20" style="width:100%" >
+					{foreach from=$listeRessources item=ressourceTmp}
+						<option value="{$ressourceTmp.ressource_id}" {if (isset($ressource_ids) && $ressourceTmp.ressource_id|in_array:$ressource_ids) || $periode.ressource_id eq $ressourceTmp.ressource_id || (isset($ressource_id_choisi) && $ressource_id_choisi eq $ressourceTmp.ressource_id)} selected="selected" {/if}>{$ressourceTmp.nom|xss_protect}</option>
+					{/foreach}
+				</select>
+			</div>
+		{else}
 		<div class="col-md-2 col-form-label">{#winPeriode_ressource#} :</div>
 			<div class="col-md-4">
 				<select name="ressource" id="ressource" class="form-control {if $smarty.session.isMobileOrTablet!=1}select2{/if}" tabindex="20" style="width:100%" >
@@ -396,6 +406,7 @@
 					{/foreach}
 				</select>
 			</div>
+		{/if}
 	{/if}
 	{if $smarty.const.CONFIG_SOPLANNING_OPTION_LIEUX == 0 }
 	<input type="hidden" name="lieu" id="lieu" value="">

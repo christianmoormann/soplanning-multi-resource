@@ -1061,7 +1061,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             }
             // Verification que la ressource est disponible
             if (!is_null($periode->ressource_id)) {
-                if (!checkConflitRessource($periode->ressource_id, $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
+                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
                     $objResponse->addScript('location.reload();');
                     return $objResponse->getXML();
@@ -1104,6 +1104,13 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             if (!$copie->db_save()) {
                 $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_erreurDeplacement')));
                 return $objResponse->getXML();
+            }
+
+            // multi-resource : carry the resource set onto the copy
+            if ($ressourceCible->isSaved()) {
+                setRessourcesPeriode($copie->periode_id, array($ressourceCible->ressource_id));
+            } else {
+                copyRessourcesPeriode($periode->periode_id, $copie->periode_id);
             }
 
             // Audit
@@ -1191,7 +1198,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             //$nbJoursDecalDest = 0;
             // V?rification que la ressource est disponible
             if (!is_null($periode->ressource_id)) {
-                if (!checkConflitRessource($periode->ressource_id, $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
+                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
                     $objResponse->addScript('location.reload();');
                     return $objResponse->getXML();
@@ -1235,6 +1242,11 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
 			if (!$periode->db_save()) {
                 $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_erreurDeplacement')));
                 return $objResponse->getXML();
+            }
+
+            // multi-resource : dragging a task onto a resource row makes that its resource set
+            if ($ressourceCible->isSaved()) {
+                setRessourcesPeriode($periode->periode_id, array($periode->ressource_id));
             }
 
             // Audit

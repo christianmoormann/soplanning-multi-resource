@@ -550,6 +550,75 @@ function couvreTranche($dureeDetails, $trancheHoraire) {
 	}
 }
 
+// ---------------------------------------------------------------------------
+// Multiple resources per task (option SOPLANNING_OPTION_RESSOURCES_MULTIPLE).
+// When the option is off none of these helpers change historical behaviour:
+// planning_periode.ressource_id keeps holding the single / primary resource
+// and planning_periode_ressource simply mirrors it.
+// ---------------------------------------------------------------------------
+
+// TRUE only when resources are enabled AND the multi-resource option is on.
+function soplanningMultiRessourcesActif() {
+	return defined('CONFIG_SOPLANNING_OPTION_RESSOURCES') && CONFIG_SOPLANNING_OPTION_RESSOURCES == 1
+		&& defined('CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE') && CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE == 1;
+}
+
+// All ressource_id assigned to a task, read from the junction table.
+// Falls back to the scalar planning_periode.ressource_id when the junction
+// holds nothing yet (task created through a path that only set the scalar).
+function getRessourcesPeriode($periode_id) {
+	$out = array();
+	if ($periode_id === null || $periode_id === '') return $out;
+	$res = db_query("SELECT ressource_id FROM planning_periode_ressource WHERE periode_id = " . val2sql($periode_id) . " ORDER BY ressource_id");
+	while ($row = db_fetch_array($res)) { $out[] = $row['ressource_id']; }
+	if (empty($out)) {
+		$res = db_query("SELECT ressource_id FROM planning_periode WHERE periode_id = " . val2sql($periode_id) . " AND ressource_id IS NOT NULL AND ressource_id <> ''");
+		while ($row = db_fetch_array($res)) { $out[] = $row['ressource_id']; }
+	}
+	return $out;
+}
+
+// Replace the whole resource set of a task in the junction table.
+// $ressource_ids : array, or comma-separated string, or '' to clear.
+// Returns the cleaned list actually written (de-duplicated, blanks removed).
+function setRessourcesPeriode($periode_id, $ressource_ids) {
+	if ($periode_id === null || $periode_id === '') return array();
+	if (!is_array($ressource_ids)) {
+		$ressource_ids = ($ressource_ids === null || $ressource_ids === '') ? array() : explode(',', $ressource_ids);
+	}
+	$clean = array();
+	foreach ($ressource_ids as $rid) {
+		$rid = trim((string)$rid);
+		if ($rid !== '' && !in_array($rid, $clean, true)) { $clean[] = $rid; }
+	}
+	db_query("DELETE FROM planning_periode_ressource WHERE periode_id = " . val2sql($periode_id));
+	foreach ($clean as $rid) {
+		db_query("INSERT INTO planning_periode_ressource (periode_id, ressource_id) VALUES (" . val2sql($periode_id) . ", " . val2sql($rid) . ")");
+	}
+	return $clean;
+}
+
+// Copy a task's resource set onto another task (used on copy / repetition).
+function copyRessourcesPeriode($from_periode_id, $to_periode_id) {
+	if ($from_periode_id === null || $to_periode_id === null || $from_periode_id === '' || $to_periode_id === '') return;
+	db_query("DELETE FROM planning_periode_ressource WHERE periode_id = " . val2sql($to_periode_id));
+	db_query("INSERT INTO planning_periode_ressource (periode_id, ressource_id) SELECT " . val2sql($to_periode_id) . ", ressource_id FROM planning_periode_ressource WHERE periode_id = " . val2sql($from_periode_id));
+}
+
+// Booking-conflict check over a set of resources: fails on the first clash.
+function checkConflitRessources($ressource_ids,$date_debut,$date_fin,$duree_details,$user_id,$periode_id,$link_id) {
+	if (!is_array($ressource_ids)) {
+		$ressource_ids = ($ressource_ids === null || $ressource_ids === '') ? array() : array($ressource_ids);
+	}
+	foreach ($ressource_ids as $rid) {
+		if ($rid === '' || $rid === null) continue;
+		if (!checkConflitRessource($rid,$date_debut,$date_fin,$duree_details,$user_id,$periode_id,$link_id)) {
+			return false;
+		}
+	}
+	return true;
+}
+
 function checkConflitRessource($ressource,$date_debut,$date_fin,$duree_details,$user_id,$periode_id,$link_id) {
 	// V?rification de l'exclusivité de la ressource
 	$nressource = new Ressource();
@@ -582,7 +651,7 @@ function checkConflitRessource($ressource,$date_debut,$date_fin,$duree_details,$
 			$sql .= " INNER JOIN planning_user ON planning_periode.user_id = planning_user.user_id ";
 			$sql .= " WHERE ((date_fin IS NOT NULL AND date_debut <= " . val2sql($date_debut) . " AND date_fin >= " . val2sql($date_fin) . ")";
 			$sql .= " OR (date_fin IS NULL AND date_debut = " . val2sql($date_debut) . "))";
-			$sql .= " AND planning_periode.ressource_id = ".val2sql($ressource);
+			$sql .= " AND (planning_periode.ressource_id = ".val2sql($ressource)." OR EXISTS (SELECT 1 FROM planning_periode_ressource pprc WHERE pprc.periode_id = planning_periode.periode_id AND pprc.ressource_id = ".val2sql($ressource)."))";
 		} else {
 			$sql = "SELECT *, planning_user.nom AS nom_user";
 			$sql .= " FROM planning_periode ";
@@ -590,7 +659,7 @@ function checkConflitRessource($ressource,$date_debut,$date_fin,$duree_details,$
 			$sql .= " WHERE ((date_fin IS NOT NULL AND date_debut <= " . val2sql($date_debut) . " AND date_fin >= " . val2sql($date_debut) . ")";
 			$sql .= " OR (date_fin IS NOT NULL AND date_debut <= " . val2sql($date_fin) . " AND date_debut >= " . val2sql($date_debut) . ")";
 			$sql .= " OR (date_fin IS NULL AND date_debut >= " . val2sql($date_debut) . " AND date_debut <= " . val2sql($date_fin) . "))";
-			$sql .= " AND planning_periode.ressource_id = ".val2sql($ressource);
+			$sql .= " AND (planning_periode.ressource_id = ".val2sql($ressource)." OR EXISTS (SELECT 1 FROM planning_periode_ressource pprc WHERE pprc.periode_id = planning_periode.periode_id AND pprc.ressource_id = ".val2sql($ressource)."))";
 		}
 		if (!empty($link_id)) $sql .= " AND link_id<>'$link_id'";
 		if (!is_null($periode_id)) $sql.= " AND planning_periode.periode_id<> $periode_id ";

@@ -1,0 +1,121 @@
+From 7dabe7606364b48e07e10a6e0a55871116c0fed9 Mon Sep 17 00:00:00 2001
+From: christianmoormann <christianmoormann@users.noreply.github.com>
+Date: Wed, 2 Sep 2026 11:54:54 +0200
+Subject: [PATCH 5/7] multi-resource: task form multi-select and write path
+
+- periode_form.tpl: <select multiple name=ressource[]> when the option is on,
+  pre-selected from $ressource_ids; single-select path untouched otherwise
+- xajax_server.php: modifPeriode() passes the current set to the form;
+  submitFormPeriode() accepts $ressource as scalar or array and writes
+  planning_periode_ressource for every row of the link_id group
+- class_ressource.inc: on resource delete, repoint the primary ressource_id to
+  a remaining resource and drop junction rows
+---
+ includes/class_ressource.inc |  8 +++++++-
+ templates/periode_form.tpl   | 11 +++++++++++
+ www/process/xajax_server.php | 18 ++++++++++++++++--
+ 3 files changed, 34 insertions(+), 3 deletions(-)
+
+diff --git a/includes/class_ressource.inc b/includes/class_ressource.inc
+index cbc43e3..474f1ee 100644
+--- a/includes/class_ressource.inc
++++ b/includes/class_ressource.inc
+@@ -55,9 +55,15 @@ class Ressource extends GObject
+ 		$periodes = new GCollection('Periode');
+ 		$periodes->db_load(array('ressource_id', '=', $this->ressource_id));
+ 		while($periode = $periodes->fetch()){
+-			$periode->ressource_id = NULL;
++			// keep the primary pointer valid: fall back to another resource still on the task
++			$autres = array();
++			$res = db_query("SELECT ressource_id FROM planning_periode_ressource WHERE periode_id = " . val2sql($periode->periode_id) . " AND ressource_id <> " . val2sql($this->ressource_id) . " ORDER BY ressource_id");
++			while ($row = db_fetch_array($res)) { $autres[] = $row['ressource_id']; }
++			$periode->ressource_id = (count($autres) > 0) ? $autres[0] : NULL;
+ 			$periode->db_save();
+ 		}
++		// drop junction rows for this resource (redundant with the FK cascade, safe without it)
++		db_query("DELETE FROM planning_periode_ressource WHERE ressource_id = " . val2sql($this->ressource_id));
+ 		$return = parent::db_delete();
+ 		return $return;
+ 	}
+diff --git a/templates/periode_form.tpl b/templates/periode_form.tpl
+index 914f1b1..758ece3 100644
+--- a/templates/periode_form.tpl
++++ b/templates/periode_form.tpl
+@@ -387,6 +387,16 @@
+ 			</div>
+ 	{/if}
+ 	{if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES == 1 }
++		{if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE == 1}
++		<div class="col-md-2 col-form-label">{#winPeriode_ressources#} :</div>
++			<div class="col-md-4">
++				<select name="ressource[]" id="ressource" multiple="multiple" class="form-control {if $smarty.session.isMobileOrTablet!=1}select2{/if}" tabindex="20" style="width:100%" >
++					{foreach from=$listeRessources item=ressourceTmp}
++						<option value="{$ressourceTmp.ressource_id}" {if (isset($ressource_ids) && $ressourceTmp.ressource_id|in_array:$ressource_ids) || $periode.ressource_id eq $ressourceTmp.ressource_id || (isset($ressource_id_choisi) && $ressource_id_choisi eq $ressourceTmp.ressource_id)} selected="selected" {/if}>{$ressourceTmp.nom|xss_protect}</option>
++					{/foreach}
++				</select>
++			</div>
++		{else}
+ 		<div class="col-md-2 col-form-label">{#winPeriode_ressource#} :</div>
+ 			<div class="col-md-4">
+ 				<select name="ressource" id="ressource" class="form-control {if $smarty.session.isMobileOrTablet!=1}select2{/if}" tabindex="20" style="width:100%" >
+@@ -396,6 +406,7 @@
+ 					{/foreach}
+ 				</select>
+ 			</div>
++		{/if}
+ 	{/if}
+ 	{if $smarty.const.CONFIG_SOPLANNING_OPTION_LIEUX == 0 }
+ 	<input type="hidden" name="lieu" id="lieu" value="">
+diff --git a/www/process/xajax_server.php b/www/process/xajax_server.php
+index 42c1f93..5f2a3c7 100644
+--- a/www/process/xajax_server.php
++++ b/www/process/xajax_server.php
+@@ -675,6 +675,7 @@ function modifPeriode($periode_id)
+ 
+     $smarty->assign('listeUsers', $listeUsers->getSmartyData());
+     $smarty->assign('link_id', $periode->link_id);
++    $smarty->assign('ressource_ids', getRessourcesPeriode($periode->periode_id));
+ 
+     // Explode de la liste des fichiers
+     if (!is_null($periode->fichiers) && ($periode->fichiers<>'')) {
+@@ -1992,7 +1993,11 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
+     $periode->statut_tache = ($statut_tache != '' ? $statut_tache : null);
+     $periode->livrable = ($livrable != '' ? $livrable : null);
+     $periode->lieu_id = ($lieu != '' ? $lieu : null);
+-    $periode->ressource_id = ($ressource != '' ? $ressource : null);
++    // $ressource is a scalar in single-resource mode, an array in multi-resource mode
++    $ressourceListe = is_array($ressource)
++        ? array_values(array_unique(array_filter(array_map('trim', $ressource), function($r){ return $r !== ''; })))
++        : (($ressource !== null && $ressource !== '') ? array(trim($ressource)) : array());
++    $periode->ressource_id = (count($ressourceListe) > 0 ? $ressourceListe[0] : null);
+     $periode->pause = ($pause != '' ? $pause . ':00' : null);
+     $periode->notes = ($notes != '' ? $notes : null);
+     $periode->lien = ($lien != '' ? str_ireplace('javascript:', '', $lien) : null);
+@@ -2305,7 +2310,7 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
+ 
+     // V?rification que la ressource est disponible
+     if (!is_null($periode->ressource_id)) {
+-        if (!checkConflitRessource($ressource, $periode->date_debut, $periode->date_fin, $periode->duree_details, $user_id, $periode_id, $periode->link_id)) {
++        if (!checkConflitRessources($ressourceListe, $periode->date_debut, $periode->date_fin, $periode->duree_details, $user_id, $periode_id, $periode->link_id)) {
+             $objResponse->addScript("document.getElementById('butSubmitPeriode').disabled=false;");
+             $objResponse->addScript("document.getElementById('divPatienter').style.display='none';");
+             $objResponse->addAlert(addslashes($smarty->getConfigVars('erreur_ressource_utilisee')));
+@@ -2612,6 +2617,15 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
+         logAction($action, $infos);
+     }
+ 
++    // multi-resource : mirror the task's resource set onto every row of the group
++    // (all assigned users and all repeated occurrences share the same link_id)
++    if ($periode->link_id !== null && $periode->link_id !== '') {
++        $grpRes = db_query("SELECT periode_id FROM planning_periode WHERE link_id = " . val2sql($periode->link_id));
++        while ($grpRow = db_fetch_array($grpRes)) { setRessourcesPeriode($grpRow['periode_id'], $ressourceListe); }
++    } elseif (isset($periodeTmp) && $periodeTmp->periode_id) {
++        setRessourcesPeriode($periodeTmp->periode_id, $ressourceListe);
++    }
++
+     if ($_SESSION['planningView'] == 'taches') {
+         $objResponse->addRedirect('taches');
+     } else {
+-- 
+2.55.0.windows.5
+

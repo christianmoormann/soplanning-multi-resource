@@ -1,0 +1,64 @@
+From 44b4e56b4977d0831aae8699d3fe34e30ec4bff8 Mon Sep 17 00:00:00 2001
+From: christianmoormann <christianmoormann@users.noreply.github.com>
+Date: Wed, 2 Sep 2026 11:54:53 +0200
+Subject: [PATCH 2/7] multi-resource: opt-in option
+ SOPLANNING_OPTION_RESSOURCES_MULTIPLE
+
+Admin Configuration screen gets a yes/no selector right under 'Resources
+management'; www/process/options.php persists it. Default 0 -> behaviour is
+byte-for-byte unchanged until an admin turns it on.
+---
+ templates/www_options.tpl | 10 ++++++++++
+ www/process/options.php   | 15 +++++++++++++++
+ 2 files changed, 25 insertions(+)
+
+diff --git a/templates/www_options.tpl b/templates/www_options.tpl
+index 149cce0..71fd94e 100644
+--- a/templates/www_options.tpl
++++ b/templates/www_options.tpl
+@@ -195,6 +195,16 @@
+ 									</div>
+ 										<div title="{#config_aide_options_ressources#}" class="cursor-help tooltipster"><i class="fa fa-question-circle" aria-hidden="true"></i></div>
+ 								</div>
++								<div class="form-group row col-md-12 align-items-center">
++									<label class="col-md-4 col-form-label">{#config_options_ressources_multiple#}  :</label>
++									<div class="col-2">
++										<select name="SOPLANNING_OPTION_RESSOURCES_MULTIPLE" class="form-control">
++											<option value="0" {if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE eq 0}selected="selected"{/if}>{#non#}</option>
++											<option value="1" {if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE eq 1}selected="selected"{/if}>{#oui#}</option>
++										</select>
++									</div>
++										<div title="{#config_aide_options_ressources_multiple#}" class="cursor-help tooltipster"><i class="fa fa-question-circle" aria-hidden="true"></i></div>
++								</div>
+ 								<div class="form-group row col-md-12 align-items-center">
+ 									<label class="col-md-4 col-form-label">{#config_options_audit#}  :</label>
+ 									<div class="col-2">
+diff --git a/www/process/options.php b/www/process/options.php
+index f820cfe..bdce9c1 100644
+--- a/www/process/options.php
++++ b/www/process/options.php
+@@ -154,6 +154,21 @@ if(isset($_POST['SOPLANNING_OPTION_RESSOURCES'])) {
+ 	}
+ }
+ 
++if(isset($_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'])) {
++	$config = new Config();
++	$config->db_load(array('cle', '=', 'SOPLANNING_OPTION_RESSOURCES_MULTIPLE'));
++	if($_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'] == 0 || $_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'] == 1) {
++		$config->valeur = $_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'];
++	} else {
++		$config->valeur = 0;
++	}
++	if(!$config->db_save()) {
++		$_SESSION['erreur'] = 'changeNotOK';
++		header('Location: ../options' . (isset($_POST['tab']) ? '?tab=' . $_POST['tab'] : ''));
++		exit;
++	}
++}
++
+ if(isset($_POST['SOPLANNING_OPTION_AUDIT'])) {
+ 	$config = new Config();
+ 	$config->db_load(array('cle', '=', 'SOPLANNING_OPTION_AUDIT'));
+-- 
+2.55.0.windows.5
+

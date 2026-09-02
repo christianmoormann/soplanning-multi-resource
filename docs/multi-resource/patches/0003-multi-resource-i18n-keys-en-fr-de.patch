@@ -1,0 +1,59 @@
+From 81260ae8907fb41ecf327c17693f7def8e52dd1b Mon Sep 17 00:00:00 2001
+From: christianmoormann <christianmoormann@users.noreply.github.com>
+Date: Wed, 2 Sep 2026 11:54:53 +0200
+Subject: [PATCH 3/7] multi-resource: i18n keys (en, fr, de)
+
+config_options_ressources_multiple, config_aide_options_ressources_multiple,
+winPeriode_ressources (plural label). Other languages fall back to English.
+New strings are ASCII only; accented fr/de wording left for translators.
+---
+ templates/languages/de.txt | 3 +++
+ templates/languages/en.txt | 3 +++
+ templates/languages/fr.txt | 3 +++
+ 3 files changed, 9 insertions(+)
+
+diff --git a/templates/languages/de.txt b/templates/languages/de.txt
+index 2a5b11b..cd74e19 100644
+--- a/templates/languages/de.txt
++++ b/templates/languages/de.txt
+@@ -565,6 +565,9 @@ droits_aucunRessources = "Keine Berechtigung"
+ droits_ressourcesAcces = "Änderungen erlaubt"
+ config_options_ressources = "Ressourcen-Management"
+ config_aide_options_ressources = "Benutzer erlauben beim Erstellen oder Ändern einer Aufgabe eine Ressource zu wählen"
++config_options_ressources_multiple = "Mehrere Ressourcen pro Aufgabe"
++config_aide_options_ressources_multiple = "Erfordert 'Ressourcen-Management'. Erlaubt, einer Aufgabe mehrere Ressourcen gleichzeitig zuzuweisen statt nur einer."
++winPeriode_ressources = "Ressourcen"
+ winPeriode_ressource = "Ressource"
+ ajax_IDRessourceNonValide = "ID ungültig"
+ winPeriode_ressource_identifiantCarMax = "(max. 20 Zeichen)"
+diff --git a/templates/languages/en.txt b/templates/languages/en.txt
+index 0de19a2..8a530ad 100644
+--- a/templates/languages/en.txt
++++ b/templates/languages/en.txt
+@@ -566,6 +566,9 @@ droits_aucunRessources = "No rights"
+ droits_ressourcesAcces = "Access to modification"
+ config_options_ressources = "Resources management"
+ config_aide_options_ressources = "Allow user to select a resource while creating/modifying task"
++config_options_ressources_multiple = "Several resources per task"
++config_aide_options_ressources_multiple = "Requires 'Resources management'. Let a task be assigned to several resources at once instead of only one."
++winPeriode_ressources = "Resources"
+ winPeriode_ressource = "Resource"
+ ajax_IDRessourceNonValide = "Identifier not valid"
+ winPeriode_ressource_identifiantCarMax = "(20 char. max)"
+diff --git a/templates/languages/fr.txt b/templates/languages/fr.txt
+index 711ed36..eec9b0d 100644
+--- a/templates/languages/fr.txt
++++ b/templates/languages/fr.txt
+@@ -565,6 +565,9 @@ droits_aucunRessources = "Aucun droit"
+ droits_ressourcesAcces = "Accès aux modifications"
+ config_options_ressources = "Gestion des ressources"
+ config_aide_options_ressources = "Permet d'ajouter la possibilité de renseigner une ressource lors de la création/modification d'une tâche"
++config_options_ressources_multiple = "Plusieurs ressources par tache"
++config_aide_options_ressources_multiple = "Necessite 'Gestion des ressources'. Permet d'affecter plusieurs ressources a une meme tache au lieu d'une seule."
++winPeriode_ressources = "Ressources"
+ winPeriode_ressource = "Ressource"
+ ajax_IDRessourceNonValide = "Identifiant non valide"
+ winPeriode_ressource_identifiantCarMax = "(20 car. max)"
+-- 
+2.55.0.windows.5
+

@@ -244,7 +244,7 @@ if(isset($_REQUEST['rechercheTaches']) && $_REQUEST['rechercheTaches'] != ''){
 		$sql.= " AND planning_periode.lieu_id IN ('" . implode("','", $_SESSION['filtreGroupeLieu']) . "')";
 	}
 	if(count($_SESSION['filtreGroupeRessource']) > 0) {
-		$sql.= " AND planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')";
+		$sql.= " AND (planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "') OR EXISTS (SELECT 1 FROM planning_periode_ressource pprf WHERE pprf.periode_id = planning_periode.periode_id AND pprf.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')))";
 	}	
 	if(!empty($filtreGroupeProjet)) {
 		$sql .= "		AND (planning_projet.groupe_id IN ('" . implode("','", array_map('addslashes', $filtreGroupeProjet)) . "')";
@@ -303,7 +303,7 @@ if(isset($_REQUEST['rechercheTaches']) && $_REQUEST['rechercheTaches'] != ''){
 		$sql.= " AND planning_periode.lieu_id IN ('" . implode("','", $_SESSION['filtreGroupeLieu']) . "')";
 	}
 	if(count($_SESSION['filtreGroupeRessource']) > 0) {
-		$sql.= " AND planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')";
+		$sql.= " AND (planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "') OR EXISTS (SELECT 1 FROM planning_periode_ressource pprf WHERE pprf.periode_id = planning_periode.periode_id AND pprf.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')))";
 	}	
 	if(!empty($filtreGroupeProjet)) {
 		$sql .= "		AND (planning_projet.groupe_id IN ('" . implode("','", $filtreGroupeProjet) . "')";

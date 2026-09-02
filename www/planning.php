@@ -7,6 +7,22 @@ require(BASE .'/../config.inc');
 echo '</pre>';
 require(BASE .'/../includes/header.inc');
 
+// multi-resource : resource-row keys a task must appear under
+// (its full set when the option is on, otherwise the single primary ressource_id).
+function planningLignesRessource($infosJour) {
+	static $cache = array();
+	if (!soplanningMultiRessourcesActif()) {
+		return array($infosJour['ressource_id']);
+	}
+	$pid = $infosJour['periode_id'];
+	if (!array_key_exists($pid, $cache)) {
+		$lst = getRessourcesPeriode($pid);
+		if (empty($lst)) { $lst = array($infosJour['ressource_id']); }
+		$cache[$pid] = $lst;
+	}
+	return $cache[$pid];
+}
+
 $version = new Version();
 $version->checkAvailableVersion();
 
@@ -170,7 +186,7 @@ if(count($_SESSION['filtreGroupeLieu']) > 0) {
 }
 // Si filtre sur ressource
 if(count($_SESSION['filtreGroupeRessource']) > 0) {
-	$sql.= " AND planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')";
+	$sql.= " AND (planning_periode.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "') OR EXISTS (SELECT 1 FROM planning_periode_ressource pprf WHERE pprf.periode_id = planning_periode.periode_id AND pprf.ressource_id IN ('" . implode("','", $_SESSION['filtreGroupeRessource']) . "')))";
 }
 // Si filtre sur statut de tache
 if(count($_SESSION['filtreStatutTache']) > 0) {
@@ -292,7 +308,7 @@ if ($base_ligne == 'lieux')
 // Ligne ressources
 if ($base_ligne == 'ressources')
 {	
-	if($masquerLigneVide){
+	if($masquerLigneVide && !soplanningMultiRessourcesActif()){
 		// liste des ressources à partir des périodes remontées
 		while ($p = $periodes->fetch()) {
 			$infosJour = $p->getSmartyData();
@@ -545,7 +561,7 @@ while ($p = $periodes->fetch()) {
 
 			// tâches par ressources et jour
 			if ($base_ligne=='ressources')
-				$planning['taches'][$infosJour['ressource_id']][$cle][]=$infosJour['periode_id'];
+				foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$cle][]=$infosJour['periode_id'];}
 
 			// tâches par heures et jour
 			if ($base_ligne=='heures')
@@ -676,7 +692,7 @@ while ($p = $periodes->fetch()) {
 
 				// tâches par ressources et jour
 				if ($base_ligne=='ressources')
-					$planning['taches'][$infosJour['ressource_id']][$cle][]=$infosJour['periode_id'];
+					foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$cle][]=$infosJour['periode_id'];}
 
 				// tâches par heures et jour
 				if ($base_ligne=='heures')
@@ -903,7 +919,7 @@ while ($p = $periodes->fetch()) {
 
 					// tâches par ressources et jour
 					if ($base_ligne=='ressources')
-						$planning['taches'][$infosJour['ressource_id']][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];
+						foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];}
 				}
 			
 			// Si on est sur une durée fixe
@@ -935,7 +951,7 @@ while ($p = $periodes->fetch()) {
 					}
 					// tâches par ressources et jour
 					if ($base_ligne=='ressources') {
-						$planning['taches'][$infosJour['ressource_id']][$tmpDate->format('Y-m-d')][$planning['heures'][$iteration]][]=$infosJour['periode_id'];
+						foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate->format('Y-m-d')][$planning['heures'][$iteration]][]=$infosJour['periode_id'];}
 					}
 					$iteration++;
 				}
@@ -963,7 +979,7 @@ while ($p = $periodes->fetch()) {
 
 					// tâches par ressources et jour
 					if ($base_ligne=='ressources')
-						$planning['taches'][$infosJour['ressource_id']][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];
+						foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];}
 				}
 
 			// Si on est sur une demie-journée PM
@@ -989,7 +1005,7 @@ while ($p = $periodes->fetch()) {
 
 					// tâches par ressources et jour
 					if ($base_ligne=='ressources')
-						$planning['taches'][$infosJour['ressource_id']][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];
+						foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];}
 				}					
 			// Si on est sur des heures précises			
 			} else {
@@ -1019,7 +1035,7 @@ while ($p = $periodes->fetch()) {
 
 						// tâches par ressources et jour
 						if ($base_ligne=='ressources')
-							$planning['taches'][$infosJour['ressource_id']][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];
+							foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate->format('Y-m-d')][$heure][]=$infosJour['periode_id'];}
 					}
 					
 				}
@@ -1048,7 +1064,7 @@ while ($p = $periodes->fetch()) {
 
 						// tâches par ressources et jour
 						if ($base_ligne=='ressources')
-							$planning['taches'][$infosJour['ressource_id']][$tmpDate2->format('Y-m-d')][$heure][]=$infosJour['periode_id'];
+							foreach(planningLignesRessource($infosJour) as $rL){$planning['taches'][$rL][$tmpDate2->format('Y-m-d')][$heure][]=$infosJour['periode_id'];}
 						
 					}
 				}

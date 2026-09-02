@@ -154,6 +154,21 @@ if(isset($_POST['SOPLANNING_OPTION_RESSOURCES'])) {
 	}
 }
 
+if(isset($_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'])) {
+	$config = new Config();
+	$config->db_load(array('cle', '=', 'SOPLANNING_OPTION_RESSOURCES_MULTIPLE'));
+	if($_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'] == 0 || $_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'] == 1) {
+		$config->valeur = $_POST['SOPLANNING_OPTION_RESSOURCES_MULTIPLE'];
+	} else {
+		$config->valeur = 0;
+	}
+	if(!$config->db_save()) {
+		$_SESSION['erreur'] = 'changeNotOK';
+		header('Location: ../options' . (isset($_POST['tab']) ? '?tab=' . $_POST['tab'] : ''));
+		exit;
+	}
+}
+
 if(isset($_POST['SOPLANNING_OPTION_AUDIT'])) {
 	$config = new Config();
 	$config->db_load(array('cle', '=', 'SOPLANNING_OPTION_AUDIT'));

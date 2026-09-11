@@ -1,0 +1,66 @@
+From fdfac6e580ef44313efde0dba5db6de7ffe54067 Mon Sep 17 00:00:00 2001
+From: christianmoormann <christianmoormann@users.noreply.github.com>
+Date: Wed, 2 Sep 2026 13:17:47 +0200
+Subject: [PATCH 7/7] multi-resource: drag-drop move / copy path
+
+www/process/xajax_server.php moveCasePeriode():
+- both resource-conflict checks use checkConflitRessources() over the task's
+  full resource set (or the drop-target resource), so a move is blocked when
+  ANY of the task's resources clashes -- not just the primary
+- a copied task gets its resource set copied (copyRessourcesPeriode); dropping
+  a task on a resource row makes that resource its whole set
+---
+ www/process/xajax_server.php | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/www/process/xajax_server.php b/www/process/xajax_server.php
+index 5f2a3c7..6fd587e 100644
+--- a/www/process/xajax_server.php
++++ b/www/process/xajax_server.php
+@@ -1061,7 +1061,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
+             }
+             // Verification que la ressource est disponible
+             if (!is_null($periode->ressource_id)) {
+-                if (!checkConflitRessource($periode->ressource_id, $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
++                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
+                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
+                     $objResponse->addScript('location.reload();');
+                     return $objResponse->getXML();
+@@ -1106,6 +1106,13 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
+                 return $objResponse->getXML();
+             }
+ 
++            // multi-resource : carry the resource set onto the copy
++            if ($ressourceCible->isSaved()) {
++                setRessourcesPeriode($copie->periode_id, array($ressourceCible->ressource_id));
++            } else {
++                copyRessourcesPeriode($periode->periode_id, $copie->periode_id);
++            }
++
+             // Audit
+             if (CONFIG_SOPLANNING_OPTION_AUDIT == 1 && CONFIG_SOPLANNING_OPTION_AUDIT_TACHES == 1) {
+                 $new_data = $periode->getData();
+@@ -1191,7 +1198,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
+             //$nbJoursDecalDest = 0;
+             // V?rification que la ressource est disponible
+             if (!is_null($periode->ressource_id)) {
+-                if (!checkConflitRessource($periode->ressource_id, $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
++                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
+                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
+                     $objResponse->addScript('location.reload();');
+                     return $objResponse->getXML();
+@@ -1237,6 +1244,11 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
+                 return $objResponse->getXML();
+             }
+ 
++            // multi-resource : dragging a task onto a resource row makes that its resource set
++            if ($ressourceCible->isSaved()) {
++                setRessourcesPeriode($periode->periode_id, array($periode->ressource_id));
++            }
++
+             // Audit
+             if (CONFIG_SOPLANNING_OPTION_AUDIT == 1 && CONFIG_SOPLANNING_OPTION_AUDIT_TACHES == 1) {
+                 $new_data = $periode->getData();
+-- 
+2.55.0.windows.5
+

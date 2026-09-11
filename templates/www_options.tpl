@@ -196,6 +196,16 @@
 										<div title="{#config_aide_options_ressources#}" class="cursor-help tooltipster"><i class="fa fa-question-circle" aria-hidden="true"></i></div>
 								</div>
 								<div class="form-group row col-md-12 align-items-center">
+									<label class="col-md-4 col-form-label">{#config_options_ressources_multiple#}  :</label>
+									<div class="col-2">
+										<select name="SOPLANNING_OPTION_RESSOURCES_MULTIPLE" class="form-control">
+											<option value="0" {if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE eq 0}selected="selected"{/if}>{#non#}</option>
+											<option value="1" {if $smarty.const.CONFIG_SOPLANNING_OPTION_RESSOURCES_MULTIPLE eq 1}selected="selected"{/if}>{#oui#}</option>
+										</select>
+									</div>
+										<div title="{#config_aide_options_ressources_multiple#}" class="cursor-help tooltipster"><i class="fa fa-question-circle" aria-hidden="true"></i></div>
+								</div>
+								<div class="form-group row col-md-12 align-items-center">
 									<label class="col-md-4 col-form-label">{#config_options_audit#}  :</label>
 									<div class="col-2">
 										<select name="SOPLANNING_OPTION_AUDIT" class="form-control">

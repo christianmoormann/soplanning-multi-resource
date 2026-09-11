@@ -675,6 +675,7 @@ function modifPeriode($periode_id)
 
     $smarty->assign('listeUsers', $listeUsers->getSmartyData());
     $smarty->assign('link_id', $periode->link_id);
+    $smarty->assign('ressource_ids', getRessourcesPeriode($periode->periode_id));
 
     // Explode de la liste des fichiers
     if (!is_null($periode->fichiers) && ($periode->fichiers<>'')) {
@@ -1060,7 +1061,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             }
             // Verification que la ressource est disponible
             if (!is_null($periode->ressource_id)) {
-                if (!checkConflitRessource($periode->ressource_id, $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
+                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $copie->date_debut, $copie->date_fin, $copie->duree_details, $copie->user_id, null, $periode->link_id)) {
                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
                     $objResponse->addScript('location.reload();');
                     return $objResponse->getXML();
@@ -1103,6 +1104,13 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             if (!$copie->db_save()) {
                 $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_erreurDeplacement')));
                 return $objResponse->getXML();
+            }
+
+            // multi-resource : carry the resource set onto the copy
+            if ($ressourceCible->isSaved()) {
+                setRessourcesPeriode($copie->periode_id, array($ressourceCible->ressource_id));
+            } else {
+                copyRessourcesPeriode($periode->periode_id, $copie->periode_id);
             }
 
             // Audit
@@ -1190,7 +1198,7 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
             //$nbJoursDecalDest = 0;
             // V?rification que la ressource est disponible
             if (!is_null($periode->ressource_id)) {
-                if (!checkConflitRessource($periode->ressource_id, $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
+                if (!checkConflitRessources($ressourceCible->isSaved() ? array($ressourceCible->ressource_id) : getRessourcesPeriode($periode->periode_id), $periode->date_debut, $periode->date_fin, $periode->duree_details, $periode->user_id, $periode->periode_id, $periode->link_id)) {
                     $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_deplacementImpossible_erreurRessource')));
                     $objResponse->addScript('location.reload();');
                     return $objResponse->getXML();
@@ -1234,6 +1242,11 @@ function moveCasePeriode($casePeriode, $jourCible, $copie_periode = false, $scop
 			if (!$periode->db_save()) {
                 $objResponse->addAlert(addslashes($smarty->getConfigVars('ajax_erreurDeplacement')));
                 return $objResponse->getXML();
+            }
+
+            // multi-resource : dragging a task onto a resource row makes that its resource set
+            if ($ressourceCible->isSaved()) {
+                setRessourcesPeriode($periode->periode_id, array($periode->ressource_id));
             }
 
             // Audit
@@ -1992,7 +2005,11 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
     $periode->statut_tache = ($statut_tache != '' ? $statut_tache : null);
     $periode->livrable = ($livrable != '' ? $livrable : null);
     $periode->lieu_id = ($lieu != '' ? $lieu : null);
-    $periode->ressource_id = ($ressource != '' ? $ressource : null);
+    // $ressource is a scalar in single-resource mode, an array in multi-resource mode
+    $ressourceListe = is_array($ressource)
+        ? array_values(array_unique(array_filter(array_map('trim', $ressource), function($r){ return $r !== ''; })))
+        : (($ressource !== null && $ressource !== '') ? array(trim($ressource)) : array());
+    $periode->ressource_id = (count($ressourceListe) > 0 ? $ressourceListe[0] : null);
     $periode->pause = ($pause != '' ? $pause . ':00' : null);
     $periode->notes = ($notes != '' ? $notes : null);
     $periode->lien = ($lien != '' ? str_ireplace('javascript:', '', $lien) : null);
@@ -2305,7 +2322,7 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
 
     // V?rification que la ressource est disponible
     if (!is_null($periode->ressource_id)) {
-        if (!checkConflitRessource($ressource, $periode->date_debut, $periode->date_fin, $periode->duree_details, $user_id, $periode_id, $periode->link_id)) {
+        if (!checkConflitRessources($ressourceListe, $periode->date_debut, $periode->date_fin, $periode->duree_details, $user_id, $periode_id, $periode->link_id)) {
             $objResponse->addScript("document.getElementById('butSubmitPeriode').disabled=false;");
             $objResponse->addScript("document.getElementById('divPatienter').style.display='none';");
             $objResponse->addAlert(addslashes($smarty->getConfigVars('erreur_ressource_utilisee')));
@@ -2610,6 +2627,15 @@ function submitFormPeriode($periode_id, $projet_id, $user_id, $date_debut, $cons
         $infos['periode'] = $new_data_for_audit['periode_id'];
         $infos['projet'] = $new_data_for_audit['projet_id'];
         logAction($action, $infos);
+    }
+
+    // multi-resource : mirror the task's resource set onto every row of the group
+    // (all assigned users and all repeated occurrences share the same link_id)
+    if ($periode->link_id !== null && $periode->link_id !== '') {
+        $grpRes = db_query("SELECT periode_id FROM planning_periode WHERE link_id = " . val2sql($periode->link_id));
+        while ($grpRow = db_fetch_array($grpRes)) { setRessourcesPeriode($grpRow['periode_id'], $ressourceListe); }
+    } elseif (isset($periodeTmp) && $periodeTmp->periode_id) {
+        setRessourcesPeriode($periodeTmp->periode_id, $ressourceListe);
     }
 
     if ($_SESSION['planningView'] == 'taches') {
